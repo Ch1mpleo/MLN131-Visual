@@ -37,7 +37,6 @@
   body {
     background-color: #F5F5DC;
     color: #1A1A1A;
-    font-feature-settings: "ss01", "cv11";
   }
 
   ::selection {
@@ -74,7 +73,10 @@
   }
 
   .serif {
-    font-family: "Newsreader", "Crimson Text", Georgia, serif;
+    font-family: "Be Vietnam Pro", "Newsreader", "Crimson Text", "Segoe UI", system-ui, sans-serif;
+    font-feature-settings: normal;
+    font-variant-ligatures: common-ligatures;
+    text-rendering: optimizeLegibility;
   }
 
   .stamp {

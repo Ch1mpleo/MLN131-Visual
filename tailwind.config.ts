@@ -35,7 +35,7 @@ export default {
       },
       fontFamily: {
         headline: ["Epilogue", "Archivo Black", "system-ui", "sans-serif"],
-        body: ["Newsreader", "Crimson Text", "Georgia", "serif"],
+        body: ["Be Vietnam Pro", "Newsreader", "Crimson Text", "Segoe UI", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
       letterSpacing: {

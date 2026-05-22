@@ -4,7 +4,6 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import HistoricPhoto from "@/components/ui/HistoricPhoto";
 import StampTag from "@/components/ui/StampTag";
 import FlowingMenu from "@/components/FlowingMenu";
-import AnimatedList from "@/components/AnimatedList";
 
 const MENU_ROW_HEIGHT = 76;
 
@@ -146,7 +145,7 @@ function EraDetailPanel({ era }: { era: Era }) {
         </div>
       )}
 
-      <div className="p-5">
+      <div className="p-5 [font-feature-settings:normal]">
         <div className="mb-3 flex items-center gap-2">
           <StampTag tone="red" className="text-[8px]">
             {era.period}
@@ -159,14 +158,16 @@ function EraDetailPanel({ era }: { era: Era }) {
           <span>{era.text.replace(" ↗", "")}</span>
           <span className="font-mono text-sm tracking-[0.14em] text-ink/55">{era.year}</span>
         </h3>
-        <AnimatedList
-          items={[...era.features]}
-          showGradients={false}
-          displayScrollbar={false}
-          className="!w-full"
-          itemClassName="!bg-bone border border-ink/10 !rounded-none"
-          enableArrowNavigation={false}
-        />
+        <ul className="flex flex-col gap-2">
+          {era.features.map((feature) => (
+            <li
+              key={feature}
+              className="serif border-2 border-ink/20 bg-cream px-4 py-3 text-sm leading-relaxed text-ink shadow-[2px_2px_0_rgba(26,26,26,0.12)]"
+            >
+              {feature.normalize("NFC")}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
