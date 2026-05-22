@@ -5,8 +5,8 @@ import { navigate } from "@/lib/router";
 const SECTIONS = [
   { id: "hero", label: "Mở đầu", year: "Intro" },
   { id: "terminology", label: "Thuật ngữ", year: "I" },
-  { id: "viewpoints", label: "Quan niệm", year: "(a)" },
-  { id: "timeline", label: "Lịch sử", year: "(b)" },
+  { id: "viewpoints", label: "Quan niệm", year: "II" },
+  { id: "timeline", label: "Lịch sử", year: "III" },
   { id: "conclusion", label: "Kết luận", year: "KL" },
 ];
 

@@ -35,9 +35,6 @@ export default function Terminology() {
 
             {/* Origin strip + TrueFocus */}
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/50 mb-3">
-                Thế kỷ VII–VI TCN · Athens · δημοκρατία
-              </p>
               <TrueFocus
                 sentence="DEMOS KRATOS"
                 blurAmount={4}
@@ -64,23 +61,25 @@ export default function Terminology() {
               </div>
 
               {/* Two branches */}
-              <div className="w-full grid grid-cols-2 gap-4">
+              <div className="w-full grid grid-cols-2 gap-5 md:gap-6">
                 {/* DEMOS */}
                 <div className="flex flex-col items-center">
                   <div className="w-[2px] h-6 bg-ink" />
-                  <div className="border-2 border-blood bg-blood/10 px-4 py-3 w-full text-center shadow-[3px_3px_0_#1A1A1A]">
-                    <FuzzyText
-                      fontSize="clamp(1.4rem, 3.5vw, 2.2rem)"
-                      fontWeight={900}
-                      color="#D32F2F"
-                      enableHover={true}
-                      baseIntensity={0.15}
-                      hoverIntensity={0.6}
-                      className="block"
-                    >
-                      DEMOS
-                    </FuzzyText>
-                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink/70 mt-1">
+                  <div className="flex min-h-[7.5rem] w-full flex-col items-center justify-center border-2 border-blood bg-blood/10 px-5 py-6 text-center shadow-[3px_3px_0_#1A1A1A] md:min-h-[9rem] md:py-8">
+                    <div className="flex w-full justify-center">
+                      <FuzzyText
+                        fontSize="clamp(1.6rem, 4vw, 2.6rem)"
+                        fontWeight={900}
+                        color="#D32F2F"
+                        enableHover={true}
+                        baseIntensity={0.15}
+                        hoverIntensity={0.6}
+                        className="mx-auto block"
+                      >
+                        DEMOS
+                      </FuzzyText>
+                    </div>
+                    <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-ink/70 md:text-sm">
                       Nhân dân
                     </p>
                   </div>
@@ -89,21 +88,23 @@ export default function Terminology() {
                 <div className="flex flex-col items-center">
                   <div className="w-[2px] h-6 bg-ink" />
                   <div
-                    className="border-2 bg-[#1565C0]/10 px-4 py-3 w-full text-center shadow-[3px_3px_0_#1A1A1A]"
+                    className="flex min-h-[7.5rem] w-full flex-col items-center justify-center border-2 bg-[#1565C0]/10 px-5 py-6 text-center shadow-[3px_3px_0_#1A1A1A] md:min-h-[9rem] md:py-8"
                     style={{ borderColor: "#1565C0" }}
                   >
-                    <FuzzyText
-                      fontSize="clamp(1.4rem, 3.5vw, 2.2rem)"
-                      fontWeight={900}
-                      color="#1565C0"
-                      enableHover={true}
-                      baseIntensity={0.15}
-                      hoverIntensity={0.6}
-                      className="block"
-                    >
-                      KRATOS
-                    </FuzzyText>
-                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink/70 mt-1">
+                    <div className="flex w-full justify-center">
+                      <FuzzyText
+                        fontSize="clamp(1.6rem, 4vw, 2.6rem)"
+                        fontWeight={900}
+                        color="#1565C0"
+                        enableHover={true}
+                        baseIntensity={0.15}
+                        hoverIntensity={0.6}
+                        className="mx-auto block"
+                      >
+                        KRATOS
+                      </FuzzyText>
+                    </div>
+                    <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-ink/70 md:text-sm">
                       Quyền lực
                     </p>
                   </div>
@@ -122,32 +123,26 @@ export default function Terminology() {
             </div>
 
             {/* Key facts */}
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
               {[
                 { label: "Ra đời", value: "TK VII–VI TCN" },
                 { label: "Nguồn gốc", value: "Hy Lạp cổ đại" },
                 { label: "Nghĩa gốc", value: "Nhân dân cai trị" },
                 { label: "Tính kế thừa", value: "Đến ngày nay" },
               ].map((f) => (
-                <div key={f.label} className="bg-ink/5 border border-ink/15 px-3 py-2">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink/50 block">
+                <div
+                  key={f.label}
+                  className="flex min-h-[5.5rem] flex-col items-center justify-center border border-ink/15 bg-ink/5 px-4 py-5 text-center md:min-h-[6.5rem] md:py-6"
+                >
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink/50 md:text-[10px]">
                     {f.label}
                   </span>
-                  <span className="font-headline text-sm uppercase text-ink font-black">
+                  <span className="mt-1.5 font-headline text-sm uppercase text-ink font-black md:text-base">
                     {f.value}
                   </span>
                 </div>
               ))}
             </div>
-
-            {/* Reference diagram — below the JSX diagram */}
-            <HistoricPhoto
-              alt="Sơ đồ phân tích thuật ngữ dân chủ: Demos + Kratos"
-              caption="Sơ đồ phân tích thuật ngữ (tài liệu học phần)"
-              aspect="landscape"
-              colorize={false}
-              maxHeight="160px"
-            />
           </div>
         </div>
       </div>

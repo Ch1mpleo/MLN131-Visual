@@ -4,6 +4,7 @@ import SplitText from "@/components/SplitText";
 
 interface SectionHeaderProps {
   eyebrow?: string;
+  /** Section index — Roman numerals (I, II, III, …) */
   phase?: string;
   title: string;
   tagline?: string;

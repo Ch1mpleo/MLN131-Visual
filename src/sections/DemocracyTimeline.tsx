@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { MousePointerClick } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import HistoricPhoto from "@/components/ui/HistoricPhoto";
 import StampTag from "@/components/ui/StampTag";
 import FlowingMenu from "@/components/FlowingMenu";
 import AnimatedList from "@/components/AnimatedList";
 
+const MENU_ROW_HEIGHT = 76;
+
 const ERAS = [
   {
     id: "era-1",
     text: "Cộng sản nguyên thủy",
+    year: "~17.000 TCN",
     label: "Chưa có nền dân chủ",
     period: "Cổ đại",
     demType: "— (Tiền đề)",
@@ -26,6 +30,7 @@ const ERAS = [
   {
     id: "era-2",
     text: "Chiếm hữu nô lệ",
+    year: "~447 TCN",
     label: "Nền dân chủ chủ nô",
     period: "Cổ đại",
     demType: "Dân chủ chủ nô",
@@ -43,6 +48,7 @@ const ERAS = [
   {
     id: "era-3",
     text: "Phong kiến",
+    year: "TK XIII",
     label: "Quân chủ phong kiến",
     period: "Trung cổ",
     demType: "Nền quân chủ PK",
@@ -60,6 +66,7 @@ const ERAS = [
   {
     id: "era-4",
     text: "Tư bản chủ nghĩa",
+    year: "1789",
     label: "Nền dân chủ tư sản",
     period: "Cuối TK XIV – đầu TK XV",
     demType: "Dân chủ tư sản",
@@ -77,6 +84,7 @@ const ERAS = [
   {
     id: "era-5",
     text: "Xã hội chủ nghĩa",
+    year: "1917",
     label: "Nền dân chủ vô sản",
     period: "Từ 1917",
     demType: "Dân chủ XHCN",
@@ -94,6 +102,7 @@ const ERAS = [
   {
     id: "era-6",
     text: "Cộng sản chủ nghĩa ↗",
+    year: "Tương lai",
     label: "Tương lai — mục tiêu",
     period: "Tương lai",
     demType: "Mục tiêu",
@@ -108,17 +117,73 @@ const ERAS = [
       "Điểm cuối của tiến trình phát triển lịch sử",
     ],
   },
-];
+] as const;
+
+type Era = (typeof ERAS)[number];
+
+function EraDetailPanel({ era }: { era: Era }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2">
+      {era.id !== "era-6" ? (
+        <div className="border-b border-ink/15 p-5 md:border-b-0 md:border-r">
+          <HistoricPhoto
+            alt={era.photoCaption}
+            caption={era.photoCaption}
+            year={era.photoYear}
+            aspect="landscape"
+            colorize={true}
+            maxHeight="220px"
+          />
+        </div>
+      ) : (
+        <div className="flex items-center justify-center border-r border-blood/20 bg-blood/10 p-8">
+          <div className="text-center">
+            <span className="headline text-6xl text-blood">↗</span>
+            <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-ink/60">
+              Mục tiêu tương lai
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div className="p-5">
+        <div className="mb-3 flex items-center gap-2">
+          <StampTag tone="red" className="text-[8px]">
+            {era.period}
+          </StampTag>
+          <span className={`font-headline text-xs uppercase px-2 py-0.5 ${era.demColor}`}>
+            {era.demType}
+          </span>
+        </div>
+        <h3 className="headline mb-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-xl text-ink">
+          <span>{era.text.replace(" ↗", "")}</span>
+          <span className="font-mono text-sm tracking-[0.14em] text-ink/55">{era.year}</span>
+        </h3>
+        <AnimatedList
+          items={[...era.features]}
+          showGradients={false}
+          displayScrollbar={false}
+          className="!w-full"
+          itemClassName="!bg-bone border border-ink/10 !rounded-none"
+          enableArrowNavigation={false}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function DemocracyTimeline() {
   const [activeEra, setActiveEra] = useState<number | null>(null);
-  const activeData = activeEra !== null ? ERAS[activeEra] : null;
+
+  const handleEraClick = (index: number) => {
+    setActiveEra((prev) => (prev === index ? null : index));
+  };
 
   return (
     <section id="timeline" className="relative bg-ink text-cream py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeader
-          phase="(b)"
+          phase="III"
           eyebrow="Sự ra đời và phát triển"
           title="SỰ RA ĐỜI & PHÁT TRIỂN"
           tagline="Tiến trình 6 giai đoạn từ cộng sản nguyên thủy đến tương lai cộng sản chủ nghĩa."
@@ -136,12 +201,23 @@ export default function DemocracyTimeline() {
           />
         </div>
 
-        {/* FlowingMenu — 6 era rows */}
-        <div style={{ height: `${ERAS.length * 68}px` }}>
+        <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cream/55">
+            Nhấn từng dòng để mở / đóng chi tiết giai đoạn
+          </p>
+          <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-blood">
+            <MousePointerClick className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden />
+            Di chuột hoặc nhấn
+          </span>
+        </div>
+
+        {/* FlowingMenu — detail expands inline below clicked row */}
+        <div className="border-2 border-cream/20 shadow-[6px_6px_0_#D32F2F]">
           <FlowingMenu
             items={ERAS.map((era) => ({
-              link: `#${era.id}`,
-              text: era.text,
+              text: era.text.replace(" ↗", ""),
+              year: era.year,
+              subtext: era.label,
               image: "",
             }))}
             speed={18}
@@ -150,77 +226,12 @@ export default function DemocracyTimeline() {
             marqueeBgColor="#D32F2F"
             marqueeTextColor="#F5F5DC"
             borderColor="#2A2A2A"
+            rowHeight={MENU_ROW_HEIGHT}
+            activeIndex={activeEra}
+            onItemClick={handleEraClick}
+            renderExpanded={(index) => <EraDetailPanel era={ERAS[index]} />}
           />
         </div>
-
-        {/* Era selector buttons */}
-        <div className="mt-3 flex flex-wrap gap-2">
-          {ERAS.map((era, i) => (
-            <button
-              key={era.id}
-              onClick={() => setActiveEra(activeEra === i ? null : i)}
-              className={`font-mono text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 border transition-colors ${
-                activeEra === i
-                  ? "bg-blood border-blood text-cream"
-                  : "border-cream/30 text-cream/60 hover:border-blood hover:text-cream"
-              }`}
-            >
-              {era.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Detail panel — shown on click */}
-        {activeData && (
-          <div className="mt-5 bg-bone grain border-l-4 border-blood">
-            <div className="grid grid-cols-1 md:grid-cols-2">
-
-              {/* Left: Photo placeholder */}
-              {activeData.id !== "era-6" ? (
-                <div className="p-5 border-b md:border-b-0 md:border-r border-ink/15">
-                  <HistoricPhoto
-                    alt={activeData.photoCaption}
-                    caption={activeData.photoCaption}
-                    year={activeData.photoYear}
-                    aspect="landscape"
-                    colorize={true}
-                    maxHeight="220px"
-                  />
-                </div>
-              ) : (
-                <div className="flex items-center justify-center p-8 bg-blood/10 border-r border-blood/20">
-                  <div className="text-center">
-                    <span className="headline text-blood text-6xl">↗</span>
-                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink/60 mt-2">
-                      Mục tiêu tương lai
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Right: Features list */}
-              <div className="p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <StampTag tone="red" className="text-[8px]">
-                    {activeData.period}
-                  </StampTag>
-                  <span className={`font-headline text-xs uppercase px-2 py-0.5 ${activeData.demColor}`}>
-                    {activeData.demType}
-                  </span>
-                </div>
-                <h3 className="headline text-xl text-ink mb-3">{activeData.text}</h3>
-                <AnimatedList
-                  items={activeData.features}
-                  showGradients={false}
-                  displayScrollbar={false}
-                  className="!w-full"
-                  itemClassName="!bg-bone border border-ink/10 !rounded-none"
-                  enableArrowNavigation={false}
-                />
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Conclusion strip */}
         <div className="mt-8 border-t border-cream/20 pt-6">

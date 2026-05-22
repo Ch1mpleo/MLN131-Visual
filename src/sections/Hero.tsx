@@ -65,23 +65,6 @@ export default function Hero() {
                 — Hồ Chí Minh
               </span>
             </p>
-
-            <div className="flex flex-wrap items-center gap-3 mt-1">
-              <ClickSpark sparkColor="#D32F2F" sparkCount={10} sparkRadius={28}>
-                <a
-                  href="#terminology"
-                  className="bg-blood text-cream px-5 py-2.5 font-headline uppercase tracking-wide text-xs md:text-sm shadow-[3px_3px_0_#F5F5DC] hover:-translate-y-0.5 transition-transform inline-block"
-                >
-                  Tìm hiểu ngay →
-                </a>
-              </ClickSpark>
-              <a
-                href="#timeline"
-                className="border-2 border-cream/60 text-cream px-5 py-2.5 font-headline uppercase tracking-wide text-xs md:text-sm hover:bg-cream hover:text-ink transition-colors"
-              >
-                Lịch sử phát triển
-              </a>
-            </div>
           </div>
 
           {/* ── Right: Photo placeholder ── */}

@@ -1,9 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, type ReactNode } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { gsap } from 'gsap';
 
 interface MenuItemData {
-  link: string;
+  link?: string;
   text: string;
+  year?: string;
+  subtext?: string;
   image: string;
 }
 
@@ -15,15 +18,24 @@ interface FlowingMenuProps {
   marqueeBgColor?: string;
   marqueeTextColor?: string;
   borderColor?: string;
+  activeIndex?: number | null;
+  onItemClick?: (index: number) => void;
+  rowHeight?: number;
+  renderExpanded?: (index: number) => ReactNode;
 }
 
 interface MenuItemProps extends MenuItemData {
+  index: number;
   speed: number;
   textColor: string;
   marqueeBgColor: string;
   marqueeTextColor: string;
   borderColor: string;
   isFirst: boolean;
+  isActive: boolean;
+  rowHeight: number;
+  onItemClick?: (index: number) => void;
+  panelId?: string;
 }
 
 const FlowingMenu: React.FC<FlowingMenuProps> = ({
@@ -33,23 +45,71 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({
   bgColor = '#120F17',
   marqueeBgColor = '#fff',
   marqueeTextColor = '#120F17',
-  borderColor = '#fff'
+  borderColor = '#fff',
+  activeIndex = null,
+  onItemClick,
+  rowHeight = 76,
+  renderExpanded,
 }) => {
+  const isExpandable = Boolean(renderExpanded && onItemClick);
+
   return (
-    <div className="w-full h-full overflow-hidden" style={{ backgroundColor: bgColor }}>
-      <nav className="flex flex-col h-full m-0 p-0">
-        {items.map((item, idx) => (
-          <MenuItem
-            key={idx}
-            {...item}
-            speed={speed}
-            textColor={textColor}
-            marqueeBgColor={marqueeBgColor}
-            marqueeTextColor={marqueeTextColor}
-            borderColor={borderColor}
-            isFirst={idx === 0}
-          />
-        ))}
+    <div
+      className={`w-full ${isExpandable ? '' : 'h-full overflow-hidden'}`}
+      style={{ backgroundColor: bgColor }}
+    >
+      <nav
+        className={`flex flex-col m-0 p-0 ${isExpandable ? '' : 'h-full'}`}
+        aria-label="Menu lịch sử dân chủ"
+      >
+        {items.map((item, idx) => {
+          const isActive = activeIndex === idx;
+          const panelId = `flowing-menu-panel-${idx}`;
+
+          return (
+            <div key={idx} className="flex shrink-0 flex-col">
+              <MenuItem
+                {...item}
+                index={idx}
+                speed={speed}
+                textColor={textColor}
+                marqueeBgColor={marqueeBgColor}
+                marqueeTextColor={marqueeTextColor}
+                borderColor={borderColor}
+                isFirst={idx === 0}
+                isActive={isActive}
+                rowHeight={rowHeight}
+                onItemClick={onItemClick}
+                panelId={isExpandable ? panelId : undefined}
+              />
+
+              {isExpandable && (
+                <AnimatePresence initial={false}>
+                  {isActive && (
+                    <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-label={`Chi tiết ${item.text}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{
+                        height: { duration: 0.42, ease: [0.33, 1, 0.68, 1] },
+                        opacity: { duration: 0.28, ease: 'easeOut' },
+                      }}
+                      className="overflow-hidden"
+                      style={{ borderTop: `1px solid ${borderColor}` }}
+                    >
+                      <div className="bg-bone grain border-x-0 border-b-0 border-t-0 border-ink shadow-[inset_4px_0_0_#D32F2F]">
+                        {renderExpanded!(idx)}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
+            </div>
+          );
+        })}
       </nav>
     </div>
   );
@@ -58,13 +118,20 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({
 const MenuItem: React.FC<MenuItemProps> = ({
   link,
   text,
+  year,
+  subtext,
   image,
+  index,
   speed,
   textColor,
   marqueeBgColor,
   marqueeTextColor,
   borderColor,
-  isFirst
+  isFirst,
+  isActive,
+  rowHeight,
+  onItemClick,
+  panelId,
 }) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
@@ -94,7 +161,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
     calculateRepetitions();
     window.addEventListener('resize', calculateRepetitions);
     return () => window.removeEventListener('resize', calculateRepetitions);
-  }, [text, image]);
+  }, [text, image, subtext, year]);
 
   useEffect(() => {
     const setupMarquee = () => {
@@ -125,7 +192,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
     };
   }, [text, image, repetitions, speed]);
 
-  const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseEnter = (ev: React.MouseEvent<HTMLElement>) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
@@ -137,7 +204,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       .to([marqueeRef.current, marqueeInnerRef.current], { y: '0%' }, 0);
   };
 
-  const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseLeave = (ev: React.MouseEvent<HTMLElement>) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
@@ -148,21 +215,72 @@ const MenuItem: React.FC<MenuItemProps> = ({
       .to(marqueeInnerRef.current, { y: edge === 'top' ? '101%' : '-101%' }, 0);
   };
 
+  const handleClick = () => {
+    onItemClick?.(index);
+  };
+
+  const triggerClassName =
+    'flex h-full w-full flex-col items-center justify-center relative cursor-pointer uppercase no-underline font-semibold px-4 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#D32F2F]';
+
+  const triggerStyle = { color: textColor };
+
+  const label = (
+    <>
+      <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5">
+        <span className="font-headline text-[clamp(0.85rem,2.6vh,1.25rem)] leading-tight tracking-wide">
+          {text}
+        </span>
+        {year && (
+          <span className="font-mono text-[clamp(0.55rem,1.35vh,0.7rem)] normal-case tracking-[0.16em] text-[#D32F2F]">
+            {year}
+          </span>
+        )}
+      </div>
+      {subtext && (
+        <span className="mt-1 font-mono text-[clamp(0.55rem,1.4vh,0.7rem)] normal-case tracking-[0.18em] opacity-75">
+          {subtext}
+        </span>
+      )}
+    </>
+  );
+
+  const marqueeLabel = [text, year, subtext].filter(Boolean).join(' · ');
+
   return (
     <div
-      className="flex-1 relative overflow-hidden text-center"
+      className="relative shrink-0 overflow-hidden text-center"
       ref={itemRef}
-      style={{ borderTop: isFirst ? 'none' : `1px solid ${borderColor}` }}
+      style={{
+        height: rowHeight,
+        borderTop: isFirst ? 'none' : `1px solid ${borderColor}`,
+        backgroundColor: isActive ? 'rgba(211, 47, 47, 0.22)' : undefined,
+        boxShadow: isActive ? 'inset 4px 0 0 #D32F2F' : undefined,
+      }}
     >
-      <a
-        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-[4vh]"
-        href={link}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{ color: textColor }}
-      >
-        {text}
-      </a>
+      {onItemClick ? (
+        <button
+          type="button"
+          className={triggerClassName}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+          aria-expanded={isActive}
+          aria-controls={panelId}
+          style={triggerStyle}
+        >
+          {label}
+        </button>
+      ) : (
+        <a
+          className={triggerClassName}
+          href={link ?? '#'}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          style={triggerStyle}
+        >
+          {label}
+        </a>
+      )}
       <div
         className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none translate-y-[101%]"
         ref={marqueeRef}
@@ -171,7 +289,9 @@ const MenuItem: React.FC<MenuItemProps> = ({
         <div className="h-full w-fit flex" ref={marqueeInnerRef}>
           {[...Array(repetitions)].map((_, idx) => (
             <div className="marquee-part flex items-center flex-shrink-0" key={idx} style={{ color: marqueeTextColor }}>
-              <span className="whitespace-nowrap uppercase font-normal text-[4vh] leading-[1] px-[1vw]">{text}</span>
+              <span className="whitespace-nowrap uppercase font-normal text-[4vh] leading-[1] px-[1vw]">
+                {marqueeLabel}
+              </span>
               <div
                 className="w-[200px] h-[7vh] my-[2em] mx-[2vw] py-[1em] rounded-[50px] bg-cover bg-center"
                 style={{ backgroundImage: `url(${image})` }}
