@@ -21,7 +21,7 @@ const ERAS = [
     photoSrc: "https://luatduonggia.vn/wp-content/uploads/2025/06/cong-xa-nguyen-thuy-la-gi-tim-hieu-ve-cong-xa-nguyen-thuy.jpg",
     features: [
       "Xã hội tự quản cộng đồng thị tộc, bộ lạc",
-      "Nhân dân bầu thủ lĩnh quân sự qua Đại hội nhân dân",
+      "Thành viên bộ lạc bầu thủ lĩnh quân sự tại hội nghị chung của cộng đồng",
       "Mọi người có quyền phát biểu và biểu quyết",
       "Chưa có nhà nước, chưa có giai cấp",
       "Hình thức dân chủ sơ khai nhất của loài người",
@@ -203,7 +203,8 @@ export default function DemocracyTimeline() {
           <HistoricPhoto
             alt="Sơ đồ tiến trình phát triển các hình thức dân chủ"
             aspect="wide"
-            src="https://i.ibb.co/wrWdy9kv/Gemini-Generated-Image-n6432pn6432pn643.png"
+
+            src="https://i.ibb.co/N2hwX1vb/Gemini-Generated-Image-2pmkw12pmkw12pmk.png"
             colorize={false}
             maxHeight="clamp(12rem, 38vw, 22.5rem)"
             className="w-full border-cream/25 shadow-[6px_6px_0_#D32F2F] [&>div]:block [&>div]:bg-transparent [&>div]:leading-[0] [&_button]:block [&_button]:w-full [&_img]:block [&_img]:h-auto [&_img]:w-full [&_img]:max-w-full"
@@ -240,26 +241,6 @@ export default function DemocracyTimeline() {
             onItemClick={handleEraClick}
             renderExpanded={(index) => <EraDetailPanel era={ERAS[index]} />}
           />
-        </div>
-
-        {/* Conclusion strip */}
-        <div className="mt-8 border-t border-cream/20 pt-6">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-cream/40 mb-3">
-            Kết luận — Ba nền dân chủ hình thái nhà nước
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {[
-              { num: "01", name: "Dân chủ chủ nô", era: "Chế độ chiếm hữu nô lệ", bg: "bg-bone text-ink" },
-              { num: "02", name: "Dân chủ tư sản", era: "Chế độ tư bản chủ nghĩa", bg: "bg-smoke text-cream" },
-              { num: "03", name: "Dân chủ XHCN", era: "Chế độ xã hội chủ nghĩa", bg: "bg-blood text-cream" },
-            ].map((d) => (
-              <div key={d.num} className={`${d.bg} p-4 border-l-4 border-current`}>
-                <span className="font-mono text-xs opacity-50">{d.num}</span>
-                <p className="headline text-xl mt-0.5">{d.name}</p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-60 mt-0.5">{d.era}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

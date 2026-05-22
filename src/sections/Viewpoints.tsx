@@ -29,7 +29,7 @@ const HCM_QUOTES = [
   },
   {
     text: "Dân làm chủ thì Chủ tịch, bộ trưởng... làm đầy tớ cho nhân dân, chứ không phải là làm quan cách mạng.",
-    context: "Thực hành dân chủ",
+    context: "Chế độ xã hội",
   },
 ] as const;
 

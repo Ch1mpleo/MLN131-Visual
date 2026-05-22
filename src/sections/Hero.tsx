@@ -35,7 +35,7 @@ export default function Hero() {
                 Lý luận chính trị
               </StampTag>
               <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-cream/60 md:text-[10px]">
-                MLN131 · Dân chủ &amp; Pháp luật
+                MLN131
               </span>
             </div>
 
