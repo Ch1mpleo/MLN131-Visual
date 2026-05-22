@@ -1,50 +1,58 @@
 import Noise from "@/components/Noise";
-import ClickSpark from "@/components/ClickSpark";
 import RotatingText from "@/components/RotatingText";
 import StampTag from "@/components/ui/StampTag";
-import HistoricPhoto from "@/components/ui/HistoricPhoto";
+
+const HO_CHI_MINH_PORTRAIT =
+  "https://i1-e.pinimg.com/1200x/ff/ec/30/ffec307c263a9e02300677cd240c0b4e.jpg";
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-[100svh] min-h-[580px] overflow-hidden bg-ink"
+      className="relative min-h-[100svh] overflow-hidden bg-ink"
     >
-      {/* Animated grain overlay */}
       <Noise patternAlpha={18} patternRefreshInterval={2} />
 
-      {/* Red constructivist top band */}
-      <div className="absolute top-0 inset-x-0 h-1 bg-blood z-10" />
+      <div className="absolute inset-x-0 top-0 z-20 h-1 bg-blood" />
 
-      {/* Content */}
-      <div className="relative z-10 h-full mx-auto max-w-7xl px-5 md:px-10 flex flex-col justify-between pt-20 pb-6">
-        <div className="flex-1 grid grid-cols-12 gap-4 md:gap-8 items-center">
+      {/* Constructivist backdrop bands */}
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[46%] md:block"
+        aria-hidden
+      >
+        <div className="absolute inset-y-0 right-0 w-full bg-blood/12" />
+        <div className="absolute bottom-0 right-0 h-[38%] w-[72%] bg-blood/20" />
+        <div className="absolute right-8 top-[18%] h-[58%] w-2 bg-cream/25" />
+        <div className="absolute right-0 top-[22%] h-[52%] w-1 bg-blood" />
+      </div>
 
-          {/* ── Left: Title ── */}
-          <div className="col-span-12 md:col-span-7 flex flex-col gap-3 md:gap-4">
+      <div className="relative z-10 mx-auto flex h-full min-h-[100svh] max-w-7xl flex-col justify-between px-5 pb-6 pt-20 md:px-10">
+        <div className="grid flex-1 grid-cols-12 items-center gap-6 md:gap-8">
+          {/* ── Copy column ── */}
+          <div className="col-span-12 flex flex-col gap-3 md:col-span-6 md:gap-4 lg:col-span-7">
             <div className="flex items-center gap-3">
               <StampTag tone="red" rotate={-2} className="text-[10px] md:text-xs">
                 Lý luận chính trị
               </StampTag>
-              <span className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-cream/60">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-cream/60 md:text-[10px]">
                 CNML01 · Dân chủ &amp; Pháp luật
               </span>
             </div>
 
             <div>
-              <h1 className="headline text-[clamp(2.5rem,6.5vw,5.5rem)] text-cream leading-none block">
+              <h1 className="headline block text-[clamp(2.5rem,6.5vw,5.5rem)] leading-none text-cream">
                 DÂN CHỦ
               </h1>
-              <div className="flex items-center gap-3 mt-1">
-                <h1 className="headline text-[clamp(2.5rem,6.5vw,5.5rem)] text-blood leading-none">
+              <div className="mt-1 flex items-center gap-3">
+                <h1 className="headline text-[clamp(2.5rem,6.5vw,5.5rem)] leading-none text-blood">
                   LÀ GÌ?
                 </h1>
-                <span className="h-[3px] flex-1 max-w-[8rem] bg-cream/40" />
+                <span className="h-[3px] max-w-[8rem] flex-1 bg-cream/40" />
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-cream/50">
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-cream/50 md:text-xs">
                 Là quyền của
               </span>
               <RotatingText
@@ -59,27 +67,60 @@ export default function Hero() {
               />
             </div>
 
-            <p className="serif text-sm md:text-base text-cream/80 max-w-sm leading-relaxed italic border-l-4 border-blood pl-4">
+            <p className="serif max-w-sm border-l-4 border-blood pl-4 text-sm italic leading-relaxed text-cream/80 md:text-base">
               "Dân chủ là dân là chủ và dân làm chủ."
-              <span className="block not-italic font-mono text-[9px] md:text-[10px] tracking-widest uppercase text-cream/50 mt-1.5">
+              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-widest text-cream/50 not-italic md:text-[10px]">
                 — Hồ Chí Minh
               </span>
             </p>
           </div>
 
-          {/* ── Right: Photo placeholder ── */}
-          <div className="hidden md:flex col-span-5 items-center justify-end h-full">
-            <div className="w-1.5 self-stretch bg-blood mr-4 shrink-0" />
-            <div className="w-full">
-              <HistoricPhoto
-                alt="Chân dung Hồ Chí Minh"
-                caption="Chân dung nhân vật lịch sử"
-                year="1946"
-                aspect="portrait"
-                colorize={false}
-                maxHeight="420px"
-              />
-            </div>
+          {/* ── Portrait monument (custom frame — not HistoricPhoto) ── */}
+          <div className="col-span-12 md:col-span-6 lg:col-span-5">
+            <figure className="relative mx-auto w-full max-w-[420px] md:mx-0 md:ml-auto md:max-w-none">
+              <div className="relative">
+                {/* Offset constructivist shadow */}
+                <div
+                  className="absolute -bottom-3 -right-3 hidden h-full w-full border-2 border-blood bg-blood md:block"
+                  aria-hidden
+                />
+
+                <div className="relative overflow-hidden border-[3px] border-cream bg-ink shadow-[10px_10px_0_#D32F2F] md:border-4">
+                  <div className="relative aspect-[3/4] w-full md:aspect-auto md:h-[min(72svh,640px)]">
+                    <img
+                      src={HO_CHI_MINH_PORTRAIT}
+                      alt="Chân dung Hồ Chí Minh"
+                      className="h-full w-full object-cover object-[center_12%] contrast-[1.08] grayscale brightness-[0.92] md:object-[center_10%]"
+                      fetchPriority="high"
+                      decoding="async"
+                    />
+
+                    {/* Vignette for depth */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-cream/5 mix-blend-multiply" />
+                    <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-cream/20" />
+
+                    {/* Year stamp */}
+                    <div className="absolute left-0 top-0 bg-blood px-4 py-2 font-headline text-sm uppercase tracking-wide text-cream shadow-[4px_4px_0_#1A1A1A] md:text-base">
+                      1946
+                    </div>
+
+                    {/* Archive label */}
+                    <div className="absolute bottom-0 left-0 right-0 border-t-2 border-cream/30 bg-ink/85 px-4 py-3 backdrop-blur-[2px]">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-cream/55">
+                        Tư liệu lưu trữ
+                      </p>
+                      <p className="headline mt-0.5 text-base leading-none text-cream md:text-lg">
+                        HỒ CHÍ MINH
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <figcaption className="mt-3 hidden font-mono text-[9px] uppercase tracking-[0.22em] text-cream/45 md:block">
+                Chân dung Chủ tịch Hồ Chí Minh · Năm 1946
+              </figcaption>
+            </figure>
           </div>
         </div>
 
@@ -94,7 +135,7 @@ export default function Hero() {
               <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-cream/50">
                 {s.label}
               </span>
-              <span className="headline text-blood text-lg md:text-2xl leading-none">
+              <span className="headline text-lg leading-none text-blood md:text-2xl">
                 {s.value}
               </span>
             </div>
@@ -102,7 +143,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink/80 to-transparent pointer-events-none z-10" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-ink to-transparent" />
     </section>
   );
 }
