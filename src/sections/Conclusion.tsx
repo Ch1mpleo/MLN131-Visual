@@ -1,10 +1,10 @@
 import SectionHeader from "@/components/ui/SectionHeader";
 import StampTag from "@/components/ui/StampTag";
 import BounceCards from "@/components/BounceCards";
-import CircularText from "@/components/CircularText";
+import CornerEmblem from "@/components/ui/CornerEmblem";
 
 const IMG_SLAVE = "https://cdn.luatminhkhue.vn/lmk/articles/71/357604/kieu-nha-nuoc-chu-no-la-gi---tim-hieu-ve-kieu-nha-nuoc-chu-no-357604.jpg";
-const IMG_BOURGEOIS = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAF4TLdNspWO143TJfxQ15XjiXgowZilWmvTjAxJfPKt5ynO2AMX4_CCUlV92HYpAqy2XCPlTWlHCsHjB2LojMun11uQEJoSjQTyZPVlVAhAMfXMVcO0ONNF45wAglwrzzggh7meo_-71r/s960/cach-mang-tu-san-anh.jpg";
+const IMG_BOURGEOIS = "https://tiasang.gitlab.io/history/wihm/images/cover.jpg";
 const IMG_SOCIALIST = "https://redsvn.net/wp-content/uploads/2023/06/Lenin.jpg";
 
 const THREE_DEMOCRACIES = [
@@ -84,12 +84,7 @@ export default function Conclusion() {
             >
               {d.isHighlight && (
                 <div className="absolute right-3 top-3 z-10">
-                  <CircularText
-                    text="DÂN CHỦ XÃ HỘI CHỦ NGHĨA • NHÂN DÂN LÀM CHỦ • "
-                    spinDuration={20}
-                    onHover="slowDown"
-                    className="!h-[88px] !w-[88px] !text-[7px] !font-mono !text-cream"
-                  />
+                  <CornerEmblem />
                 </div>
               )}
 

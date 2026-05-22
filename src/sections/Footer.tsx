@@ -10,9 +10,8 @@ export default function Footer() {
             DÂN CHỦ LÀ GÌ?
           </h3>
           <p className="serif text-cream/80 max-w-xl italic leading-relaxed">
-            Trình chiếu trực quan tương tác — hệ thống hoá khái niệm Dân chủ
-            (Demos + Kratos) theo phong cách Revolutionary Constructivist. Chạy
-            trên React, TailwindCSS &amp; ReactBits.
+            Hệ thống hoá khái niệm Dân chủ
+            (Demos + Kratos) theo phong cách Revolutionary Constructivist.
           </p>
 
           <div className="flex flex-wrap gap-2 pt-2">
@@ -83,11 +82,11 @@ export default function Footer() {
             Nguồn &amp; Kiểm chứng
           </span>
           <p className="serif text-sm text-cream/85 leading-relaxed">
-            Giáo trình học phần Dân chủ và Pháp luật / Lịch sử Đảng. Tư liệu
-            ảnh: Wikipedia / Wikimedia Commons (Public Domain).
+            Giáo trình học phần Dân chủ và Pháp luật. 
+            Tư liệu ảnh: Public Domain.
           </p>
           <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-cream/60 mt-2">
-            CNML01 · Học kỳ 9 · 2026
+            MLN131 · Học kỳ 9
           </p>
         </div>
       </div>

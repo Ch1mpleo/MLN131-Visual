@@ -18,6 +18,7 @@ const ERAS = [
     demColor: "bg-ink/20 text-ink",
     photoCaption: "Xã hội nguyên thủy — thị tộc, bộ lạc",
     photoYear: "~17.000 TCN",
+    photoSrc: "https://luatduonggia.vn/wp-content/uploads/2025/06/cong-xa-nguyen-thuy-la-gi-tim-hieu-ve-cong-xa-nguyen-thuy.jpg",
     features: [
       "Xã hội tự quản cộng đồng thị tộc, bộ lạc",
       "Nhân dân bầu thủ lĩnh quân sự qua Đại hội nhân dân",
@@ -34,8 +35,9 @@ const ERAS = [
     period: "Cổ đại",
     demType: "Dân chủ chủ nô",
     demColor: "bg-bone text-ink",
-    photoCaption: "Nền dân chủ Athens — chủ nô và công dân tự do",
+    photoCaption: "Chế độ chiếm hữu nô lệ",
     photoYear: "~447 TCN",
+    photoSrc: "https://cdn.accgroup.vn/wp-content/uploads/2022/12/9.2-5-hinh-thai-kinh-te-xa-hoi-tu-truoc-toi-nay-co-nhung-dac-diem-gi-noi-bat-1.jpg",
     features: [
       "LLSX phát triển → chế độ tư hữu, giai cấp hình thành",
       "Dân tham gia bầu nhà nước",
@@ -54,6 +56,7 @@ const ERAS = [
     demColor: "bg-smoke text-cream",
     photoCaption: "Chế độ phong kiến — nhà nước chuyên chế",
     photoYear: "TK XIII",
+    photoSrc: "https://congdankhuyenhoc.qltns.mediacdn.vn/zoom/700_438/449484899827462144/2024/1/24/cacvikhaoquantronglexuongdanhkhoathinamdinhdaunamdinhngay27thang12nam1897-1706104184937485134775-8-0-633-1000-crop-1706104395710283177462.jpg",
     features: [
       "Nhà nước chuyên chế phong kiến thống trị",
       "Dân chủ chủ nô bị xóa bỏ hoàn toàn",
@@ -72,6 +75,7 @@ const ERAS = [
     demColor: "bg-bone text-ink",
     photoCaption: "Cách mạng tư sản — tự do, bình đẳng, bác ái",
     photoYear: "1789",
+    photoSrc: "https://cdn.luatminhkhue.vn/lmk/articles/83/419593/cac-dinh-luat-chung-cua-tu-ban-chu-nghia-419593.jpg",
     features: [
       "Giai cấp tư sản mở đường cho nền dân chủ tư sản",
       "Bước tiến lớn: tự do, bình đẳng, dân chủ",
@@ -90,6 +94,7 @@ const ERAS = [
     demColor: "bg-blood text-cream",
     photoCaption: "Cách mạng Tháng Mười Nga 1917",
     photoYear: "1917",
+    photoSrc: "https://media-cdn-v2.laodong.vn/storage/newsportal/2022/11/6/1113505/CM-Thang-10-Nga.jpg",
     features: [
       "Ra đời sau Cách mạng Tháng Mười Nga thắng lợi (1917)",
       "Thiết lập quyền lực của đại đa số nhân dân",
@@ -108,6 +113,7 @@ const ERAS = [
     demColor: "bg-blood text-cream",
     photoCaption: "",
     photoYear: "",
+    photoSrc: "",
     features: [
       "Xã hội không còn giai cấp, không còn nhà nước",
       "Dân chủ hoàn toàn và triệt để",
@@ -129,6 +135,7 @@ function EraDetailPanel({ era }: { era: Era }) {
             alt={era.photoCaption}
             caption={era.photoCaption}
             year={era.photoYear}
+            src={era.photoSrc || undefined}
             aspect="landscape"
             colorize={true}
             maxHeight="220px"
@@ -191,14 +198,15 @@ export default function DemocracyTimeline() {
           className="mb-6 [&_h2]:text-cream [&_p]:text-cream/70 [&_span]:text-cream/50"
         />
 
-        {/* Reference diagram placeholder */}
-        <div className="mb-6">
+        {/* Reference diagram — border hugs image (no letterbox) */}
+        <div className="mb-8 w-full">
           <HistoricPhoto
             alt="Sơ đồ tiến trình phát triển các hình thức dân chủ"
-            caption="Tiến trình phát triển các hình thức dân chủ (tài liệu học phần)"
             aspect="wide"
+            src="https://i.ibb.co/wrWdy9kv/Gemini-Generated-Image-n6432pn6432pn643.png"
             colorize={false}
-            maxHeight="200px"
+            maxHeight="clamp(12rem, 38vw, 22.5rem)"
+            className="w-full border-cream/25 shadow-[6px_6px_0_#D32F2F] [&>div]:block [&>div]:bg-transparent [&>div]:leading-[0] [&_button]:block [&_button]:w-full [&_img]:block [&_img]:h-auto [&_img]:w-full [&_img]:max-w-full"
           />
         </div>
 
@@ -219,7 +227,7 @@ export default function DemocracyTimeline() {
               text: era.text.replace(" ↗", ""),
               year: era.year,
               subtext: era.label,
-              image: "",
+              image: era.photoSrc,
             }))}
             speed={18}
             textColor="#F5F5DC"
