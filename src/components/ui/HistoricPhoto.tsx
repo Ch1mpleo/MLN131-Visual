@@ -20,6 +20,14 @@ interface HistoricPhotoProps {
   colorize?: boolean;
   /** Maximum height to cap very large images. Default: "70vh" */
   maxHeight?: string;
+  /** Fill the parent height (e.g. card header strip). Parent must set height. */
+  fill?: boolean;
+  /** How the image fits inside its box when fill is true. Default: "contain" */
+  objectFit?: "contain" | "cover";
+  /** Focal point for cover crop */
+  objectPosition?: string;
+  /** Click to open full-screen viewer. Default: true */
+  enableLightbox?: boolean;
 }
 
 const PLACEHOLDER_ASPECT = {
@@ -39,6 +47,10 @@ export default function HistoricPhoto({
   aspect = "landscape",
   colorize = true,
   maxHeight = "70vh",
+  fill = false,
+  objectFit = "contain",
+  objectPosition = "center",
+  enableLightbox = true,
 }: HistoricPhotoProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
@@ -47,46 +59,88 @@ export default function HistoricPhoto({
       <figure
         className={cn(
           "group relative flex flex-col gap-0 border-2 border-ink shadow-[6px_6px_0_#1A1A1A] overflow-hidden",
+          fill && "h-full min-h-0",
           className,
         )}
       >
-        {/* Image or placeholder — image is centered, capped by maxHeight, NEVER cropped */}
-        <div className="relative w-full bg-ink flex items-center justify-center">
+        {/* Image or placeholder — contain by default; cover fill for card headers */}
+        <div
+          className={cn(
+            "relative w-full bg-ink flex items-center justify-center",
+            fill ? "h-full min-h-0" : "",
+          )}
+        >
           {src ? (
-            <button
-              type="button"
-              onClick={() => setLightboxOpen(true)}
-              className="relative block w-full cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-blood"
-              aria-label={`Phóng to ảnh: ${alt}`}
-            >
-              <img
-                src={src}
-                alt={alt}
-                style={{ maxHeight }}
+            enableLightbox ? (
+              <button
+                type="button"
+                onClick={() => setLightboxOpen(true)}
                 className={cn(
-                  "block mx-auto w-auto max-w-full h-auto object-contain transition-all duration-700",
-                  colorize
-                    ? "grayscale group-hover:grayscale-0"
-                    : "grayscale-0",
+                  "relative cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-blood",
+                  fill ? "block h-full w-full" : "block w-full",
                 )}
-              />
+                aria-label={`Phóng to ảnh: ${alt}`}
+              >
+                <img
+                  src={src}
+                  alt={alt}
+                  style={{
+                    maxHeight: fill ? undefined : maxHeight,
+                    objectPosition,
+                  }}
+                  className={cn(
+                    "transition-all duration-700",
+                    fill
+                      ? cn(
+                          "block h-full w-full",
+                          objectFit === "cover" ? "object-cover" : "object-contain",
+                        )
+                      : "mx-auto block h-auto w-auto max-w-full object-contain",
+                    colorize
+                      ? "grayscale group-hover:grayscale-0"
+                      : "grayscale-0",
+                  )}
+                />
 
-              {/* Expand hint — shown on hover */}
-              <div className="absolute bottom-3 left-3 flex items-center gap-2 bg-ink/80 text-cream px-3 py-1.5 border border-cream/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="w-3.5 h-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path d="M4 4h6M4 4v6M4 4l7 7M20 4h-6M20 4v6M20 4l-7 7M4 20h6M4 20v-6M4 20l7-7M20 20h-6M20 20v-6M20 20l-7-7" strokeLinecap="round" />
-                </svg>
-                <span className="font-mono text-[9px] uppercase tracking-[0.25em]">
-                  Phóng to
-                </span>
+                <div className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-2 border border-cream/40 bg-ink/80 px-3 py-1.5 text-cream opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path d="M4 4h6M4 4v6M4 4l7 7M20 4h-6M20 4v6M20 4l-7 7M4 20h6M4 20v-6M4 20l7-7M20 20h-6M20 20v-6M20 20l-7-7" strokeLinecap="round" />
+                  </svg>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.25em]">
+                    Phóng to
+                  </span>
+                </div>
+              </button>
+            ) : (
+              <div className={cn("relative", fill ? "h-full w-full" : "w-full")}>
+                <img
+                  src={src}
+                  alt={alt}
+                  style={{
+                    maxHeight: fill ? undefined : maxHeight,
+                    objectPosition,
+                  }}
+                  className={cn(
+                    "transition-all duration-700",
+                    fill
+                      ? cn(
+                          "block h-full w-full",
+                          objectFit === "cover" ? "object-cover" : "object-contain",
+                        )
+                      : "mx-auto block h-auto w-auto max-w-full object-contain",
+                    colorize
+                      ? "grayscale group-hover:grayscale-0"
+                      : "grayscale-0",
+                  )}
+                />
               </div>
-            </button>
+            )
           ) : (
             /* ─── PLACEHOLDER — shown when no src is provided ─── */
             <div
@@ -155,7 +209,7 @@ export default function HistoricPhoto({
       </figure>
 
       {/* Lightbox for full-resolution viewing */}
-      {src && (
+      {src && enableLightbox && (
         <ImageLightbox
           open={lightboxOpen}
           images={[{ src, alt, caption, credit, year }]}

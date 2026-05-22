@@ -32,11 +32,11 @@ export function ViewpointCard({
     >
       <div
         className={cn(
-          "h-[5.5rem] shrink-0 overflow-hidden border-b-2 border-ink bg-ink md:h-[6rem]",
+          "relative h-44 shrink-0 overflow-hidden border-b-2 border-ink bg-ink md:h-48",
           variant === "featured" && "ring-2 ring-inset ring-blood/40",
         )}
       >
-        {photo}
+        <div className="h-full w-full [&_figure]:h-full">{photo}</div>
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-5 md:gap-5 md:p-6">

@@ -11,10 +11,11 @@ import {
 } from "@/components/ui/ViewpointCard";
 
 const CARD_PHOTO = {
-  className: "!border-0 !shadow-none [&_figcaption]:!hidden",
-  aspect: "wide" as const,
-  maxHeight: "96px",
+  className: "!h-full !w-full !border-0 !shadow-none [&_figcaption]:!hidden",
+  fill: true,
+  objectFit: "cover" as const,
   colorize: true,
+  enableLightbox: false,
 };
 
 const HCM_QUOTES = [
@@ -79,7 +80,8 @@ export default function Viewpoints() {
             photo={
               <HistoricPhoto
                 alt="Nền dân chủ Hy Lạp cổ đại"
-                year="~500 TCN"
+                src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                objectPosition="center 40%"
                 {...CARD_PHOTO}
               />
             }
@@ -98,7 +100,8 @@ export default function Viewpoints() {
             photo={
               <HistoricPhoto
                 alt="Karl Marx và Friedrich Engels"
-                year="1845"
+                src="https://file.qdnd.vn/data/images/14/2020/11/25/tranhoai/4.jpg?dpi=150&quality=100&w=575"
+                objectPosition="center 20%"
                 {...CARD_PHOTO}
               />
             }
@@ -137,7 +140,8 @@ export default function Viewpoints() {
             photo={
               <HistoricPhoto
                 alt="Chủ tịch Hồ Chí Minh"
-                year="1946"
+                src="https://lh3.googleusercontent.com/proxy/-9Pid3CwbEhNUBDXzS-9AEEzZAvIG3YDqbvScSytB5F_yulQbakxRxB0AHpeA850bnDNH0zhYxIby-onG-uoRm6jkjRdsLti_nzB7goeqoDbpkrsiY_pcVAEBqvaAl-u"
+                objectPosition="center 35%"
                 {...CARD_PHOTO}
                 colorize={false}
               />

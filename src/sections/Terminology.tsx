@@ -17,18 +17,26 @@ export default function Terminology() {
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10 items-start">
 
-          {/* ── Left: single image placeholder ── */}
-          <div className="md:col-span-2">
+          {/* ── Left: portrait + landscape stack ── */}
+          <div className="flex flex-col gap-4 md:col-span-2">
             <HistoricPhoto
               alt="Triết học và hội đồng dân chủ Hy Lạp cổ đại"
               caption="Đại hội nhân dân Hy Lạp cổ đại"
-              credit="Thêm ảnh tại đây"
-              year="~500 TCN"
               aspect="portrait"
               colorize={true}
               maxHeight="460px"
+              src="https://i0.wp.com/lichsu.blog/wp-content/uploads/2025/09/Discurso_funebre_pericles.png?fit=719%2C573&ssl=1"
+            />
+            <HistoricPhoto
+              alt="Khu di tích Pnyx — nơi họp bình dân Athens"
+              caption="Pnyx · Hội trường dân chủ Athens cổ đại"
+              aspect="portrait"
+              colorize={true}
+              maxHeight="460px"
+              src="https://thegioidulich.com/upload/tintuc/hy-lap-co-dai/hoi-nghi-hy-lap.jpg"
             />
           </div>
+
 
           {/* ── Right: Etymology diagram ── */}
           <div className="md:col-span-3 flex flex-col gap-5">
