@@ -3,12 +3,11 @@ import { cn } from "@/lib/utils";
 import { navigate } from "@/lib/router";
 
 const SECTIONS = [
-  { id: "hero", label: "Mở đầu", year: "1945" },
-  { id: "context", label: "Bối cảnh", year: "Pre" },
-  { id: "struggle", label: "Ba giặc", year: "1945–46" },
-  { id: "resistance", label: "Kháng chiến", year: "1946–50" },
-  { id: "victory", label: "Điện Biên Phủ", year: "1951–54" },
-  { id: "lessons", label: "Bài học", year: "Nay" },
+  { id: "hero", label: "Mở đầu", year: "Intro" },
+  { id: "terminology", label: "Thuật ngữ", year: "I" },
+  { id: "viewpoints", label: "Quan niệm", year: "(a)" },
+  { id: "timeline", label: "Lịch sử", year: "(b)" },
+  { id: "conclusion", label: "Kết luận", year: "KL" },
 ];
 
 export default function Nav() {
@@ -58,10 +57,10 @@ export default function Nav() {
           </span>
           <span className="hidden sm:flex flex-col leading-tight">
             <span className="font-headline text-base tracking-tight uppercase text-ink">
-              VNR · 1945–1954
+              DÂN CHỦ
             </span>
             <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-ink/60">
-              Interactive Archive
+              Lý luận chính trị
             </span>
           </span>
         </a>
@@ -90,17 +89,13 @@ export default function Nav() {
           })}
         </ul>
 
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/game");
-          }}
+        <a
+          href="#conclusion"
           className="hidden lg:inline-flex items-center gap-2 bg-blood text-cream px-5 py-2.5 font-headline text-sm uppercase tracking-wide shadow-[3px_3px_0_#1A1A1A] hover:-translate-y-0.5 transition-transform"
         >
           <span className="h-1.5 w-1.5 bg-flagYellow animate-pulse" />
-          Chơi ghép nối →
-        </button>
+          Kết luận →
+        </a>
       </div>
     </nav>
   );

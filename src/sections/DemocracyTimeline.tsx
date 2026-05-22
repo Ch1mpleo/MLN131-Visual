@@ -1,0 +1,247 @@
+import { useState } from "react";
+import SectionHeader from "@/components/ui/SectionHeader";
+import HistoricPhoto from "@/components/ui/HistoricPhoto";
+import StampTag from "@/components/ui/StampTag";
+import FlowingMenu from "@/components/FlowingMenu";
+import AnimatedList from "@/components/AnimatedList";
+
+const ERAS = [
+  {
+    id: "era-1",
+    text: "Cộng sản nguyên thủy",
+    label: "Chưa có nền dân chủ",
+    period: "Cổ đại",
+    demType: "— (Tiền đề)",
+    demColor: "bg-ink/20 text-ink",
+    photoCaption: "Xã hội nguyên thủy — thị tộc, bộ lạc",
+    photoYear: "~17.000 TCN",
+    features: [
+      "Xã hội tự quản cộng đồng thị tộc, bộ lạc",
+      "Nhân dân bầu thủ lĩnh quân sự qua Đại hội nhân dân",
+      "Mọi người có quyền phát biểu và biểu quyết",
+      "Chưa có nhà nước, chưa có giai cấp",
+      "Hình thức dân chủ sơ khai nhất của loài người",
+    ],
+  },
+  {
+    id: "era-2",
+    text: "Chiếm hữu nô lệ",
+    label: "Nền dân chủ chủ nô",
+    period: "Cổ đại",
+    demType: "Dân chủ chủ nô",
+    demColor: "bg-bone text-ink",
+    photoCaption: "Nền dân chủ Athens — chủ nô và công dân tự do",
+    photoYear: "~447 TCN",
+    features: [
+      "LLSX phát triển → chế độ tư hữu, giai cấp hình thành",
+      "Dân tham gia bầu nhà nước",
+      "\"Dân\" chỉ gồm chủ nô + công dân tự do",
+      "Nô lệ (đa số) bị loại khỏi quyền dân chủ",
+      "Nền dân chủ đầu tiên trong lịch sử nhà nước",
+    ],
+  },
+  {
+    id: "era-3",
+    text: "Phong kiến",
+    label: "Quân chủ phong kiến",
+    period: "Trung cổ",
+    demType: "Nền quân chủ PK",
+    demColor: "bg-smoke text-cream",
+    photoCaption: "Chế độ phong kiến — nhà nước chuyên chế",
+    photoYear: "TK XIII",
+    features: [
+      "Nhà nước chuyên chế phong kiến thống trị",
+      "Dân chủ chủ nô bị xóa bỏ hoàn toàn",
+      "Chế độ độc tài thay thế chế độ dân chủ",
+      "Ý thức về dân chủ không có bước tiến đáng kể",
+      "Thời kỳ đen tối về quyền lực nhân dân",
+    ],
+  },
+  {
+    id: "era-4",
+    text: "Tư bản chủ nghĩa",
+    label: "Nền dân chủ tư sản",
+    period: "Cuối TK XIV – đầu TK XV",
+    demType: "Dân chủ tư sản",
+    demColor: "bg-bone text-ink",
+    photoCaption: "Cách mạng tư sản — tự do, bình đẳng, bác ái",
+    photoYear: "1789",
+    features: [
+      "Giai cấp tư sản mở đường cho nền dân chủ tư sản",
+      "Bước tiến lớn: tự do, bình đẳng, dân chủ",
+      "Xây dựng trên nền tảng tư hữu về tư liệu sản xuất",
+      "Thực tế: thiểu số nắm TLSX kiểm soát đại đa số",
+      "Dân chủ bị hạn chế bởi bất bình đẳng kinh tế",
+    ],
+  },
+  {
+    id: "era-5",
+    text: "Xã hội chủ nghĩa",
+    label: "Nền dân chủ vô sản",
+    period: "Từ 1917",
+    demType: "Dân chủ XHCN",
+    demColor: "bg-blood text-cream",
+    photoCaption: "Cách mạng Tháng Mười Nga 1917",
+    photoYear: "1917",
+    features: [
+      "Ra đời sau Cách mạng Tháng Mười Nga thắng lợi (1917)",
+      "Thiết lập quyền lực của đại đa số nhân dân",
+      "Xóa bỏ tư hữu về tư liệu sản xuất",
+      "Nhà nước của nhân dân, do nhân dân, vì nhân dân",
+      "Dân chủ thực chất nhất trong lịch sử đến nay",
+    ],
+  },
+  {
+    id: "era-6",
+    text: "Cộng sản chủ nghĩa ↗",
+    label: "Tương lai — mục tiêu",
+    period: "Tương lai",
+    demType: "Mục tiêu",
+    demColor: "bg-blood text-cream",
+    photoCaption: "",
+    photoYear: "",
+    features: [
+      "Xã hội không còn giai cấp, không còn nhà nước",
+      "Dân chủ hoàn toàn và triệt để",
+      "Mọi người đều là chủ nhân xã hội",
+      "Tự do, bình đẳng, bác ái thực sự",
+      "Điểm cuối của tiến trình phát triển lịch sử",
+    ],
+  },
+];
+
+export default function DemocracyTimeline() {
+  const [activeEra, setActiveEra] = useState<number | null>(null);
+  const activeData = activeEra !== null ? ERAS[activeEra] : null;
+
+  return (
+    <section id="timeline" className="relative bg-ink text-cream py-12 md:py-16">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <SectionHeader
+          phase="(b)"
+          eyebrow="Sự ra đời và phát triển"
+          title="SỰ RA ĐỜI & PHÁT TRIỂN"
+          tagline="Tiến trình 6 giai đoạn từ cộng sản nguyên thủy đến tương lai cộng sản chủ nghĩa."
+          className="mb-6 [&_h2]:text-cream [&_p]:text-cream/70 [&_span]:text-cream/50"
+        />
+
+        {/* Reference diagram placeholder */}
+        <div className="mb-6">
+          <HistoricPhoto
+            alt="Sơ đồ tiến trình phát triển các hình thức dân chủ"
+            caption="Tiến trình phát triển các hình thức dân chủ (tài liệu học phần)"
+            aspect="wide"
+            colorize={false}
+            maxHeight="200px"
+          />
+        </div>
+
+        {/* FlowingMenu — 6 era rows */}
+        <div style={{ height: `${ERAS.length * 68}px` }}>
+          <FlowingMenu
+            items={ERAS.map((era) => ({
+              link: `#${era.id}`,
+              text: era.text,
+              image: "",
+            }))}
+            speed={18}
+            textColor="#F5F5DC"
+            bgColor="#1A1A1A"
+            marqueeBgColor="#D32F2F"
+            marqueeTextColor="#F5F5DC"
+            borderColor="#2A2A2A"
+          />
+        </div>
+
+        {/* Era selector buttons */}
+        <div className="mt-3 flex flex-wrap gap-2">
+          {ERAS.map((era, i) => (
+            <button
+              key={era.id}
+              onClick={() => setActiveEra(activeEra === i ? null : i)}
+              className={`font-mono text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 border transition-colors ${
+                activeEra === i
+                  ? "bg-blood border-blood text-cream"
+                  : "border-cream/30 text-cream/60 hover:border-blood hover:text-cream"
+              }`}
+            >
+              {era.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Detail panel — shown on click */}
+        {activeData && (
+          <div className="mt-5 bg-bone grain border-l-4 border-blood">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+
+              {/* Left: Photo placeholder */}
+              {activeData.id !== "era-6" ? (
+                <div className="p-5 border-b md:border-b-0 md:border-r border-ink/15">
+                  <HistoricPhoto
+                    alt={activeData.photoCaption}
+                    caption={activeData.photoCaption}
+                    year={activeData.photoYear}
+                    aspect="landscape"
+                    colorize={true}
+                    maxHeight="220px"
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center justify-center p-8 bg-blood/10 border-r border-blood/20">
+                  <div className="text-center">
+                    <span className="headline text-blood text-6xl">↗</span>
+                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink/60 mt-2">
+                      Mục tiêu tương lai
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Right: Features list */}
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <StampTag tone="red" className="text-[8px]">
+                    {activeData.period}
+                  </StampTag>
+                  <span className={`font-headline text-xs uppercase px-2 py-0.5 ${activeData.demColor}`}>
+                    {activeData.demType}
+                  </span>
+                </div>
+                <h3 className="headline text-xl text-ink mb-3">{activeData.text}</h3>
+                <AnimatedList
+                  items={activeData.features}
+                  showGradients={false}
+                  displayScrollbar={false}
+                  className="!w-full"
+                  itemClassName="!bg-bone border border-ink/10 !rounded-none"
+                  enableArrowNavigation={false}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Conclusion strip */}
+        <div className="mt-8 border-t border-cream/20 pt-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-cream/40 mb-3">
+            Kết luận — Ba nền dân chủ hình thái nhà nước
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {[
+              { num: "01", name: "Dân chủ chủ nô", era: "Chế độ chiếm hữu nô lệ", bg: "bg-bone text-ink" },
+              { num: "02", name: "Dân chủ tư sản", era: "Chế độ tư bản chủ nghĩa", bg: "bg-smoke text-cream" },
+              { num: "03", name: "Dân chủ XHCN", era: "Chế độ xã hội chủ nghĩa", bg: "bg-blood text-cream" },
+            ].map((d) => (
+              <div key={d.num} className={`${d.bg} p-4 border-l-4 border-current`}>
+                <span className="font-mono text-xs opacity-50">{d.num}</span>
+                <p className="headline text-xl mt-0.5">{d.name}</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-60 mt-0.5">{d.era}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

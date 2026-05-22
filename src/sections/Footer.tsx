@@ -7,11 +7,11 @@ export default function Footer() {
         <div className="md:col-span-6 flex flex-col gap-5">
           <StampTag tone="red">Credits</StampTag>
           <h3 className="headline uppercase text-4xl md:text-5xl leading-tight">
-            NƯỚC VIỆT NAM LÀ MỘT
+            DÂN CHỦ LÀ GÌ?
           </h3>
           <p className="serif text-cream/80 max-w-xl italic leading-relaxed">
-            Bảo tàng Kỹ thuật số Tương tác — biên khảo lịch sử Cách mạng Việt
-            Nam 1945–1954 theo phong cách Revolutionary Constructivist. Chạy
+            Trình chiếu trực quan tương tác — hệ thống hoá khái niệm Dân chủ
+            (Demos + Kratos) theo phong cách Revolutionary Constructivist. Chạy
             trên React, TailwindCSS &amp; ReactBits.
           </p>
 
@@ -63,11 +63,10 @@ export default function Footer() {
           </span>
           {[
             { id: "hero", t: "Mở đầu" },
-            { id: "context", t: "Bối cảnh" },
-            { id: "struggle", t: "Ba giặc (45–46)" },
-            { id: "resistance", t: "Kháng chiến (46–50)" },
-            { id: "victory", t: "Điện Biên Phủ" },
-            { id: "lessons", t: "Bốn bài học" },
+            { id: "terminology", t: "Về mặt thuật ngữ" },
+            { id: "viewpoints", t: "Quan niệm dân chủ" },
+            { id: "timeline", t: "Lịch sử phát triển" },
+            { id: "conclusion", t: "Ba nền dân chủ" },
           ].map((x) => (
             <a
               key={x.id}
@@ -84,11 +83,11 @@ export default function Footer() {
             Nguồn &amp; Kiểm chứng
           </span>
           <p className="serif text-sm text-cream/85 leading-relaxed">
-            Giáo trình Lịch sử Đảng Cộng sản Việt Nam. Báo cáo thường niên FPT
-            2025. Tư liệu ảnh: tư liệu công cộng (Public Domain).
+            Giáo trình học phần Dân chủ và Pháp luật / Lịch sử Đảng. Tư liệu
+            ảnh: Wikipedia / Wikimedia Commons (Public Domain).
           </p>
           <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-cream/60 mt-2">
-            VNR202 · Học kỳ 9 · 2026
+            CNML01 · Học kỳ 9 · 2026
           </p>
         </div>
       </div>
@@ -100,7 +99,7 @@ export default function Footer() {
         <div className="flex items-center gap-2">
           <span className="inline-block h-2 w-2 bg-blood animate-pulse" />
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-cream/70">
-            Dĩ bất biến · Ứng vạn biến
+            Dân là chủ · Dân làm chủ
           </span>
         </div>
       </div>

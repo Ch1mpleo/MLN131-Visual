@@ -65,12 +65,22 @@ export default {
           "0%": { transform: "translate3d(0,0,0)" },
           "100%": { transform: "translate3d(-50%,0,0)" },
         },
+        "star-movement-bottom": {
+          "0%": { transform: "translate(0%, 0%)", opacity: "1" },
+          "100%": { transform: "translate(-100%, 0%)", opacity: "0" },
+        },
+        "star-movement-top": {
+          "0%": { transform: "translate(0%, 0%)", opacity: "1" },
+          "100%": { transform: "translate(100%, 0%)", opacity: "0" },
+        },
       },
       animation: {
         "flag-wave": "flag-wave 4s ease-in-out infinite",
         stamp: "stamp 650ms cubic-bezier(.2,.8,.2,1) both",
         marquee: "marquee 40s linear infinite",
         ticker: "ticker 30s linear infinite",
+        "star-movement-bottom": "star-movement-bottom linear infinite alternate",
+        "star-movement-top": "star-movement-top linear infinite alternate",
       },
     },
   },
