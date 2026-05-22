@@ -1,175 +1,173 @@
-# Nước Việt Nam Là Một · 1945–1954
-### Interactive Digital Museum — VNR202
+# Dân chủ và sự ra đời, phát triển của dân chủ
+### Bảo tàng Kỹ thuật số Tương tác — MLN131
 
-> *"Sông có thể cạn, núi có thể mòn, song chân lý ấy không bao giờ thay đổi."*
+> *"Dân chủ là dân là chủ và dân làm chủ."*
 > — Hồ Chí Minh
 
-An interactive visual document / digital museum covering the Vietnamese Revolution from 1945 to 1954, built as an academic presentation for the **VNR202 History of the Communist Party of Vietnam** course (Semester 9).
+Trình chiếu trực quan tương tác hệ thống hoá nội dung học phần **Dân chủ và pháp luật** (MLN131): quan niệm về dân chủ (thuật ngữ, Mác–Lênin, Hồ Chí Minh) và tiến trình ra đời, phát triển các nền dân chủ trong lịch sử. Giao diện giữ phong cách **Revolutionary Constructivist** — lưới đỏ/trắng, typography khối, ảnh tư liệu, texture giấy cũ.
 
 ---
 
-## What It Does
+## Mục tiêu
 
-The site functions as an **Interactive Digital Museum** — converting dry historical data and complex events into a living, scroll-driven visual experience. It bridges two worlds:
+Chuyển khái niệm lý luận chính trị phức tạp thành trải nghiệm thị giác có cấu trúc:
 
-- **Historical archive** of the Vietnamese resistance (1945–1954)
-- **Modern management framework** — drawing direct parallels between revolutionary strategy and contemporary study/career/business management
+- **Giáo dục trực quan** — nguồn gốc *demoskratos*, ba quan điểm, lịch sử các nền dân chủ
+- **Cầu nối khái niệm** — Hy Lạp cổ → phạm trù lịch sử (hình thái nhà nước) → giá trị vĩnh viễn (giá trị xã hội)
+- **Tương tác** — menu mở rộng theo giai đoạn, ảnh lưu trữ, sơ đồ và trích dẫn
 
-### Sections
+---
 
-| Section | Period | Content |
+## Các phần (Sections)
+
+| Section | ID | Nội dung |
 |---|---|---|
-| **Hero — Nước Việt Nam Là Một** | — | Immersive landing with the iconic dual-slogan layout inspired by revolutionary propaganda posters |
-| **Bối cảnh — Một Cổ Hai Tròng** | Pre-1945 | French-Japanese collaboration, the Great Famine of Ất Dậu (2M dead, 90% illiterate), animated statistics |
-| **Ba Giặc — Ngàn Cân Treo Sợi Tóc** | 1945–1946 | The three urgent enemies (hunger, ignorance, invasion), election of January 6 1946, diplomatic manoeuvres |
-| **Kháng Chiến — Thà Hy Sinh Tất Cả** | 1946–1950 | Full-text typewriter playback of *Lời kêu gọi toàn quốc kháng chiến*, Việt Bắc & Border campaigns, the 4-principle war doctrine |
-| **Chấn Động Địa Cầu** | 1951–1954 | 56-day Điện Biên Phủ countdown, 5-step annotated timeline, Geneva Accords |
-| **Bốn Bài Học Xương Máu** | Present | 4 timeless leadership lessons + FPT Group 2025 case study (70,000 billion VND revenue) as modern proof |
+| **Mở đầu** | `hero` | Tiêu đề *DÂN CHỦ LÀ GÌ?*, RotatingText (*NHÂN DÂN / QUYỀN LỰC / TỰ DO / BÌNH ĐẲNG*), trích Hồ Chí Minh, chân dung tư liệu |
+| **Thuật ngữ** | `terminology` | *Demos + Kratos*, sơ đồ phân nhánh, TrueFocus / FuzzyText, ảnh Hy Lạp cổ |
+| **Quan niệm** | `viewpoints` | Ba cột: thuật ngữ · Mác–Lênin (3 phương diện + bảng phạm trù) · Hồ Chí Minh (trích dẫn, HistoricPhoto) |
+| **Lịch sử** | `timeline` | Infographic tiến trình 6 giai đoạn, FlowingMenu tương tác, ảnh từng era (`photoSrc` trong `ERAS`) |
+| **Kết luận** | `conclusion` | Ba nền dân chủ hình thái nhà nước (chủ nô · tư sản · XHCN), BounceCards |
+| **Footer** | — | Nguồn, credits, liên kết mục lục |
 
 ---
 
-## Design System
+## Hệ thống thiết kế
 
-**"Revolutionary Constructivist"** aesthetic — inspired by 1940s Vietnamese propaganda posters.
+**Revolutionary Constructivist** — poster tuyên truyền và tư liệu in ấn thời kỳ cách mạng, áp dụng cho chủ đề dân chủ.
 
-| Token | Value | Usage |
+| Token | Giá trị | Dùng cho |
 |---|---|---|
-| `ink` | `#1A1A1A` | Primary text, structural elements |
-| `paper` / `cream` | `#F5F5DC` | Main background (aged newsprint feel) |
-| `blood` | `#D32F2F` | Primary red — passion, sacrifice, the flag |
-| `bone` | `#EDE6CE` | Secondary background for cards |
-| `flagYellow` | `#FFCD00` | Star yellow — accent on dark backgrounds |
+| `ink` | `#1A1A1A` | Chữ chính, khối cấu trúc |
+| `cream` / `paper` | `#F5F5DC` | Nền giấy cũ |
+| `blood` | `#D32F2F` | Đỏ chủ đạo, nhấn mạnh, cờ |
+| `bone` | `#EDE6CE` | Nền thẻ phụ |
+| `flagYellow` | `#FFCD00` | Vàng sao — accent trên nền tối |
 
-**Typography:**
-- **Headlines:** `Archivo Black` / `Epilogue` — ultra-bold, all-caps, tight tracking, monumental scale
-- **Body:** `Newsreader` / `Crimson Text` — readable serif, academic/archival feel
-- **Mono labels:** `JetBrains Mono` — dates, tags, classification labels
+**Diagram accents (sơ đồ thuật ngữ):**
 
-**Signature patterns:** hard drop shadows (`6px 6px 0 #1A1A1A`), rotated stamp tags, red/black rule bars, grain texture overlay.
+| Ý nghĩa | Màu |
+|---|---|
+| Demos / Nhân dân | `#D32F2F` (`blood`) |
+| Kratos / Quyền lực | `#1565C0` |
+
+**Typography:** `Archivo Black` / `Epilogue` (headline), `Newsreader` / `Crimson Text` (serif), `JetBrains Mono` (nhãn, phase).
+
+**Pattern:** shadow cứng (`6px 6px 0`), StampTag xoay, thanh rule đỏ/đen, grain overlay.
 
 ---
 
-## Tech Stack
+## Tech stack
 
-| Layer | Technology |
+| Lớp | Công nghệ |
 |---|---|
 | Framework | React 19 + TypeScript |
-| Build tool | Vite 5 |
-| Styling | Tailwind CSS 3 with custom design tokens |
-| Animations | GSAP 3 + `@gsap/react`, Motion (Framer) |
-| 3D / Shaders | Three.js + `@react-three/fiber`, OGL |
-| Component registry | shadcn CLI + **ReactBits** registry |
-| Icon set | Lucide React |
+| Build | Vite 5 |
+| Styling | Tailwind CSS 3 (custom tokens) |
+| Animation | GSAP 3, Motion (Framer) |
+| Icons | Lucide React |
+| Registry | shadcn CLI + ReactBits |
 
 ---
 
-## ReactBits Components Used
+## Component chính
 
-| Component | Where | Effect |
+| Component | Vị trí | Vai trò |
 |---|---|---|
-| `SplitText` | Hero, all section headers | GSAP-powered char-by-char headline reveal |
-| `RotatingText` | Hero, Lessons | Cycle through *"giặc đói / dốt / ngoại xâm"* and modern adversaries |
-| `Dither` | Hero backdrop | WebGL retro-dithered red noise overlay |
-| `Aurora` | Victory section header | Flowing red/yellow aurora — dawn of 1954 |
-| `CountUp` | Context, Struggle, Victory, Lessons | Spring-animated stat counters |
-| `ScrollVelocity` | Context | Scroll-speed-reactive slogan marquee |
-| `ScrollReveal` | Struggle | Word-by-word blur + opacity reveal |
-| `ScrollFloat` | Victory | Parallax-shift headline |
-| `AnimatedContent` | Every section | Scroll-triggered entrance for cards & blocks |
-| `TextType` | Resistance | Typewriter playback of the 1946 national call |
-| `SpotlightCard` | Resistance | Cursor-tracking radial spotlight on campaign cards |
-| `CardSwap` | Lessons | 3D-perspective card stack for FPT case studies |
-| `PixelCard` | Lessons | Pixel-dissolve hover for sources/ethics cards |
+| `SplitText` | `SectionHeader` | Tiêu đề section reveal từng ký tự |
+| `RotatingText` | `Hero` | Luân phiên NHÂN DÂN / QUYỀN LỰC / … |
+| `FuzzyText` / `TrueFocus` | `Terminology` | Sơ đồ Demos · Kratos |
+| `FlowingMenu` | `DemocracyTimeline` | 6 giai đoạn, marquee hover, panel mở rộng |
+| `HistoricPhoto` | Timeline, Viewpoints, Terminology | Ảnh tư liệu, lightbox, placeholder |
+| `ViewpointCard` | `Viewpoints` | Thẻ quan điểm ML / HCM |
+| `BounceCards` | `Conclusion` | Ba nền dân chủ |
+| `Noise` | `Hero` | Texture nhiễu nền |
+| `Nav` | Toàn site | Điều hướng cố định; chữ sáng trên Hero / Timeline |
+
+### Thêm ảnh cho từng giai đoạn timeline
+
+Trong `src/sections/DemocracyTimeline.tsx`, mỗi mục trong `ERAS` có trường `photoSrc`:
+
+```ts
+{
+  id: "era-2",
+  photoCaption: "Nền dân chủ Athens — chủ nô và công dân tự do",
+  photoYear: "~447 TCN",
+  photoSrc: "https://example.com/athens.jpg", // URL ảnh trực tiếp
+  features: [ /* ... */ ],
+}
+```
+
+`photoSrc` dùng cho panel `HistoricPhoto` khi mở dòng menu và thumbnail marquee khi hover.
 
 ---
 
-## Project Structure
+## Cấu trúc dự án
 
 ```
 src/
 ├── components/
-│   ├── ui/               # Custom design-system primitives
-│   │   ├── Nav.tsx           — Fixed tactical-map navigation bar
-│   │   ├── SectionHeader.tsx — Phase stamp + SplitText headline + rule
-│   │   ├── ArchivalCard.tsx  — Bordered archival card with label/number
-│   │   └── StampTag.tsx      — Rotated propaganda-style stamp tag
-│   ├── SplitText.tsx     # ReactBits — GSAP char split
-│   ├── RotatingText.tsx  # ReactBits — phrase cycling
-│   ├── Dither.tsx        # ReactBits — WebGL dither background
-│   ├── Aurora.tsx        # ReactBits — gradient aurora background
-│   ├── CountUp.tsx       # ReactBits — animated counter
-│   ├── ScrollVelocity.tsx# ReactBits — velocity-reactive marquee
-│   ├── ScrollReveal.tsx  # ReactBits — scroll-scrubbed reveal
-│   ├── ScrollFloat.tsx   # ReactBits — parallax float
-│   ├── AnimatedContent.tsx # ReactBits — scroll entrance wrapper
-│   ├── TextType.tsx      # ReactBits — typewriter effect
-│   ├── SpotlightCard.tsx # ReactBits — cursor-glow card
-│   ├── CardSwap.tsx      # ReactBits — 3D card swap
-│   ├── PixelCard.tsx     # ReactBits — pixel-dissolve card
-│   ├── GlitchText.tsx    # ReactBits — RGB glitch text
-│   ├── ScrambledText.tsx # ReactBits — cursor-proximity scramble
-│   └── Stepper.tsx       # ReactBits — animated step indicator
+│   ├── ui/
+│   │   ├── Nav.tsx
+│   │   ├── SectionHeader.tsx
+│   │   ├── HistoricPhoto.tsx
+│   │   ├── ArchivalCard.tsx
+│   │   ├── ViewpointCard.tsx
+│   │   ├── StampTag.tsx
+│   │   └── ...
+│   ├── FlowingMenu.tsx
+│   ├── SplitText.tsx
+│   ├── RotatingText.tsx
+│   ├── FuzzyText.tsx
+│   ├── TrueFocus.tsx
+│   ├── BounceCards.tsx
+│   └── Noise.tsx
 ├── sections/
-│   ├── Hero.tsx          # Landing — Nước Việt Nam Là Một
-│   ├── Context.tsx       # Một Cổ Hai Tròng (Pre-1945)
-│   ├── Struggle.tsx      # Ngàn Cân Treo Sợi Tóc (1945–46)
-│   ├── Resistance.tsx    # Toàn Quốc Kháng Chiến (1946–50)
-│   ├── Victory.tsx       # Điện Biên Phủ (1951–54)
-│   ├── Lessons.tsx       # Bốn Bài Học Xương Máu
-│   └── Footer.tsx        # Colophon & credits
-├── lib/
-│   └── utils.ts          # cn() helper (clsx + tailwind-merge)
+│   ├── Hero.tsx
+│   ├── Terminology.tsx
+│   ├── Viewpoints.tsx
+│   ├── DemocracyTimeline.tsx   # ERAS data + FlowingMenu
+│   ├── Conclusion.tsx
+│   └── Footer.tsx
 ├── App.tsx
 ├── main.tsx
-└── index.css             # Tailwind directives + global styles
+└── index.css
 ```
+
+Tài liệu ngữ cảnh thiết kế: `.cursor/rules/project-context.mdc`, `design.mdc`.
 
 ---
 
-## Getting Started
+## Chạy dự án
 
-**Prerequisites:** Node.js 18+
+**Yêu cầu:** Node.js 18+
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
-npm run dev
-# → http://localhost:5173
-
-# Type-check
+npm run dev      # http://localhost:5173
 npx tsc --noEmit
-
-# Production build
 npm run build
-
-# Preview production build
 npm run preview
 ```
 
+Triển khai GitHub Pages: build output trong `dist/`; `public/404.html` hỗ trợ SPA redirect.
+
 ---
 
-## Academic Context
+## Bối cảnh học thuật
 
-**Course:** VNR202 — Lịch sử Đảng Cộng sản Việt Nam  
-**Semester:** 9 · 2026  
-**Framework:** The presentation argues that the revolutionary strategy of 1945–1954 — particularly the dialectic between *short-term firefighting* and *long-term strategy building* — is a timeless management model, validated by modern case studies such as FPT Group's 2025 trajectory.
+**Học phần:** MLN131 — Dân chủ và pháp luật (Lý luận chính trị)  
+**Học kỳ:** 9 · 2026
 
-**The 4 Blood-Earned Lessons:**
-1. **Sự tỉnh táo** — Identify priorities: solve "giặc đói, giặc dốt" before the existential threat
-2. **Sự linh hoạt** — *"Dĩ bất biến, ứng vạn biến"*: fixed goals, flexible methods
-3. **Sự tích lũy** — *"Lấy ngắn nuôi dài"*: short-term hustle funds long-term capital
-4. **Sự kiên trì** — *"Tư duy trường kỳ"*: nine years, no shortcuts, win step by step
+**Nội dung trọng tâm:**
 
-**Sources:**
-- Giáo trình Lịch sử Đảng Cộng sản Việt Nam (official curriculum)
-- Báo cáo thường niên FPT 2025
-- AI tools used for ideation only; all historical claims verified against primary sources
+1. **(a) Quan niệm về dân chủ** — thuật ngữ *demoskratos*; Mác–Lênin (quyền lực, hình thái nhà nước, nguyên tắc quản lý XH); Hồ Chí Minh (giá trị xã hội, thể chế, *dân làm chủ*).
+2. **(b) Sự ra đời, phát triển** — từ cộng sản nguyên thủy đến dân chủ XHCN và mục tiêu tương lai; **ba nền dân chủ** với tư cách hình thái nhà nước.
+
+**Nguồn kiểm chứng:** Giáo trình / đề cương học phần Dân chủ và pháp luật; ảnh minh hoạ từ nguồn công khai hoặc URL do người dùng cấu hình. Công cụ AI (ChatGPT, Gemini, NotebookLM) hỗ trợ tổ chức nội dung; khẳng định học thuật theo giáo trình.
 
 ---
 
 ## License
 
-Academic project — not for commercial redistribution.  
-Historical photographs referenced are in the public domain.
+Dự án học thuật — không dùng cho thương mại.  
+Ảnh tư liệu tham chiếu thuộc phạm vi sử dụng giáo dục / public domain khi có ghi nhận.
