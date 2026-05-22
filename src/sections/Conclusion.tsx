@@ -4,7 +4,7 @@ import BounceCards from "@/components/BounceCards";
 import CircularText from "@/components/CircularText";
 
 // ─── REPLACE these placeholder URLs with your own images ──────────────────────
-const IMG_SLAVE     = "https://placehold.co/400x400/EDE6CE/1A1A1A?text=Dân+chủ+chủ+nô";
+const IMG_SLAVE = "https://placehold.co/400x400/EDE6CE/1A1A1A?text=Dân+chủ+chủ+nô";
 const IMG_BOURGEOIS = "https://placehold.co/400x400/1A1A1A/F5F5DC?text=Dân+chủ+tư+sản";
 const IMG_SOCIALIST = "https://placehold.co/400x400/D32F2F/F5F5DC?text=Dân+chủ+XHCN";
 // ──────────────────────────────────────────────────────────────────────────────
@@ -50,7 +50,7 @@ const THREE_DEMOCRACIES = [
 
 export default function Conclusion() {
   return (
-    <section id="conclusion" className="relative bg-cream grain py-12 md:py-16 overflow-hidden">
+    <section id="conclusion" className="relative overflow-hidden bg-cream grain py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeader
           phase="KẾT LUẬN"
@@ -61,8 +61,7 @@ export default function Conclusion() {
           className="mb-8 md:mb-10"
         />
 
-        {/* ── BounceCards gallery ── */}
-        <div className="flex justify-center mb-10">
+        <div className="mb-10 flex justify-center">
           <BounceCards
             images={[IMG_SLAVE, IMG_BOURGEOIS, IMG_SOCIALIST]}
             containerWidth={520}
@@ -79,36 +78,40 @@ export default function Conclusion() {
           />
         </div>
 
-        {/* ── Three detailed cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border-2 border-ink shadow-[6px_6px_0_#D32F2F]">
+        <div className="grid grid-cols-1 border-2 border-ink shadow-[6px_6px_0_#D32F2F] md:grid-cols-3">
           {THREE_DEMOCRACIES.map((d) => (
             <div
               key={d.num}
               className={`relative ${d.bg} ${d.borderClass} flex flex-col`}
             >
-              {/* CircularText seal — XHCN card only */}
               {d.isHighlight && (
-                <div className="absolute top-3 right-3 z-10">
+                <div className="absolute right-3 top-3 z-10">
                   <CircularText
                     text="DÂN CHỦ XÃ HỘI CHỦ NGHĨA • NHÂN DÂN LÀM CHỦ • "
                     spinDuration={20}
                     onHover="slowDown"
-                    className="!w-[88px] !h-[88px] !text-[7px] !font-mono !text-cream"
+                    className="!h-[88px] !w-[88px] !text-[7px] !font-mono !text-cream"
                   />
                 </div>
               )}
 
-              <div className={`p-5 flex flex-col gap-2 flex-1 ${d.textColor}`}>
-                <span className={`font-mono text-[9px] uppercase tracking-[0.3em] block ${d.accentClass}`}>
+              <div className={`flex flex-1 flex-col gap-2 p-5 ${d.textColor}`}>
+                <span
+                  className={`block font-mono text-[9px] uppercase tracking-[0.3em] ${d.accentClass}`}
+                >
                   {d.num}
                 </span>
-                <StampTag tone={d.stampTone} className="text-[8px] self-start">
+                <StampTag tone={d.stampTone} className="self-start text-[8px]">
                   {d.era}
                 </StampTag>
-                <h3 className={`headline text-lg md:text-xl leading-tight ${d.textColor}`}>
+                <h3
+                  className={`headline text-lg leading-tight md:text-xl ${d.textColor}`}
+                >
                   {d.name}
                 </h3>
-                <p className={`serif text-sm leading-relaxed opacity-85 ${d.textColor}`}>
+                <p
+                  className={`serif text-sm leading-relaxed opacity-85 ${d.textColor}`}
+                >
                   {d.desc}
                 </p>
               </div>
@@ -116,19 +119,20 @@ export default function Conclusion() {
           ))}
         </div>
 
-        {/* ── Finishing line ── */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-[auto_1fr] border-2 border-ink shadow-[6px_6px_0_#D32F2F]">
-          {/* Red accent column */}
-          <div className="bg-blood px-4 py-6 flex items-center justify-center md:writing-mode-vertical">
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-cream whitespace-nowrap md:[writing-mode:vertical-rl] md:rotate-180">
-              Chủ nghĩa Mác–Lênin
+        {/* Finishing line — on section background, no wrapper box */}
+        <div className="relative mt-14 md:mt-20 pt-10 md:pt-14 border-t-4 border-blood">
+          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-ink/45 block text-center mb-5">
+            Chủ nghĩa Mác–Lênin · Tổng kết
+          </span>
+          <p className="headline text-center text-balance text-ink max-w-5xl mx-auto text-[clamp(1.35rem,3.5vw,2.6rem)] leading-[1.12]">
+            <span className="text-blood">DÂN CHỦ</span> VỪA LÀ MỤC TIÊU, VỪA LÀ TIỀN ĐỀ VÀ PHƯƠNG TIỆN ĐỂ VƯƠN TỚI TỰ DO, GIẢI PHÓNG CON NGƯỜI.
+          </p>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <span className="h-px w-16 bg-blood/70" aria-hidden />
+            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-blood">
+              Nhân dân làm chủ
             </span>
-          </div>
-          {/* Quote */}
-          <div className="bg-ink px-6 py-6">
-            <p className="headline text-[clamp(1.1rem,2.4vw,1.8rem)] text-cream leading-tight">
-              DÂN CHỦ VỪA LÀ MỤC TIÊU, VỪA LÀ TIỀN ĐỀ VÀ PHƯƠNG TIỆN ĐỂ VƯƠN TỚI TỰ DO, GIẢI PHÓNG CON NGƯỜI.
-            </p>
+            <span className="h-px w-16 bg-blood/70" aria-hidden />
           </div>
         </div>
       </div>
