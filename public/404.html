@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Nước Việt Nam Là Một · 1945–1954</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Single Page Apps for GitHub Pages
+      MIT License — https://github.com/rafgraph/spa-github-pages
+      This redirect lets deep links like /VNR202/game work on GH Pages by
+      bouncing the visitor to the app's index.html with the route encoded in
+      the query string; the bootstrap snippet in index.html then replaces the
+      URL back to the original path so the client-side router handles it.
+    -->
+    <script>
+      (function () {
+        // Number of leading path segments that belong to the GH Pages base
+        // (e.g. "/VNR202/" -> 1). Set to 0 when deployed at the root.
+        var pathSegmentsToKeep = 1;
+        var l = window.location;
+        l.replace(
+          l.protocol +
+            "//" +
+            l.hostname +
+            (l.port ? ":" + l.port : "") +
+            l.pathname
+              .split("/")
+              .slice(0, 1 + pathSegmentsToKeep)
+              .join("/") +
+            "/?/" +
+            l.pathname
+              .slice(1)
+              .split("/")
+              .slice(pathSegmentsToKeep)
+              .join("/")
+              .replace(/&/g, "~and~") +
+            (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+            l.hash,
+        );
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

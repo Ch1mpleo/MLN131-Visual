@@ -1,0 +1,33 @@
+---
+alwaysApply: true
+---
+# Design Document: Vietnam Revolutionary History (1945 - 1954)
+
+## 1. Visual Identity & Theme
+Inspired by the provided propaganda poster in this folder and the monumental typography sample in it, the website will utilize a "Revolutionary Constructivist" aesthetic.
+
+*   **Color Palette:**
+    *   **Primary Red (#D32F2F):** Used for headers, key callouts, and revolutionary slogans. Represents passion, sacrifice, and the flag.
+    *   **Deep Black (#1A1A1A):** Used for primary text and heavy structural elements.
+    *   **Off-White/Cream (#F5F5DC):** Used as the main background to mimic aged paper or newsprint, providing a historical feel.
+    *   **Distressed Texture:** Subtle grain and paper textures to evoke the era's printing style.
+
+*   **Typography (The Monumental Archive Style):**
+    *   **Headlines:** Inspired by {{DATA:IMAGE:IMAGE_2}}. Ultra-bold, monumental, and blocky sans-serif (e.g., 'Epilogue' font-black or custom heavy weights). High-impact, all-caps, with tight letter spacing to mirror the archival and urgent nature of the 1945 proclamations.
+    *   **Body Text:** Clean, highly readable serif font (e.g., 'Newsreader' or 'Crimson Text') to give an academic, archival, and accessible feel.
+
+## 2. Information Architecture (Proposed Screens)
+
+1.  **Landing Page (The Crossroads):** An immersive introduction featuring the "Ngàn cân treo sợi tóc" (Thousand-pound weight on a hair) theme. Highlighting the 1945 situation.
+2.  **The Struggle (1945-1946):** Interactive timeline/grid focusing on "Diệt giặc đói, diệt giặc dốt, diệt giặc ngoại xâm".
+3.  **Resistance & Strategy (1946-1950):** Detailed view of the nationwide resistance call and major campaigns (Viet Bac, Border).
+4.  **Victory & Liberation (1951-1954):** The path to Dien Bien Phu and the Geneva Accords.
+
+## 3. UI Components & Layout
+*   **Hero Section:** Use large, grainy historical imagery (or stylized versions of {{DATA:IMAGE:IMAGE_5}}) with high-contrast overlays.
+*   **Timeline Navigation:** A vertical or horizontal progress bar styled like a tactical map line.
+*   **Callout Cards:** Red-bordered cards for key figures (President Ho Chi Minh) or pivotal quotes.
+*   **Document Viewer:** A specialized UI section to display snippets of the "Lời kêu gọi toàn quốc kháng chiến".
+
+## 4. Design Goal
+To educate and evoke the spirit of the era through a bold, high-contrast visual language that feels both historical and modernly accessible.

@@ -1,0 +1,162 @@
+---
+alwaysApply: true
+---
+
+# Context Document: Dân chủ và Sự ra đời, Phát triển của Dân chủ
+
+Tài liệu này hệ thống hóa nội dung học thuật (Mục 1) để phục vụ thiết kế **trình chiếu trực quan tương tác** — tái sử dụng triết lý UI **Revolutionary Constructivist** từ dự án trước (xem `design.mdc`, `inspire.png`).
+
+---
+
+## Mục tiêu Dự án (Project Context)
+
+Website/trình chiếu được xây dựng như **"Bảo tàng Kỹ thuật số Tương tác"** phiên bản mới: chuyển hóa khái niệm lý luận chính trị phức tạp thành trải nghiệm thị giác có cấu trúc.
+
+### Vai trò của Trình chiếu:
+* **Nền tảng Giáo dục Trực quan:** Làm rõ nguồn gốc thuật ngữ, ba quan điểm (thuật ngữ — Mác-Lênin — Hồ Chí Minh) và lịch sử phát triển các nền dân chủ.
+* **Cầu nối Khái niệm:** Liên kết khái niệm gốc Hy Lạp → phạm trù lịch sử (hình thái nhà nước) → giá trị vĩnh viễn (giá trị xã hội).
+* **Tuyên ngôn Thiết kế:** Giữ phong cách **Revolutionary Constructivist** — lưới ngang đỏ/trắng, typography khối monumental, ảnh tư liệu đen trắng, texture giấy cũ — áp dụng cho chủ đề dân chủ (không chỉ riêng 1945–1954).
+
+### Chủ đề trình chiếu (Outline)
+**1. Dân chủ và sự ra đời, phát triển của dân chủ**
+- **(a) Quan niệm về dân chủ**
+- **(b) Sự ra đời, phát triển của dân chủ**
+
+---
+
+## Phần 1 — (a) Quan niệm về Dân chủ
+
+### I. Về mặt thuật ngữ
+
+| Thành phần | Nội dung |
+|------------|----------|
+| **Nguồn gốc** | Thuật ngữ ra đời khoảng **thế kỷ VII–VI TCN**; các nhà tư tưởng Hy Lạp cổ dùng từ **demoskratos** (δημοκρατία). |
+| **Khái niệm ban đầu** | Theo nghĩa gốc: **nhân dân cai trị**. |
+| **Giản lược sau này** | Các nhà chính trị gọi gọn: **quyền lực của nhân dân** / **quyền lực thuộc về nhân dân**. |
+| **Tính kế thừa** | Nội dung cốt lõi **về cơ bản giữ nguyên** đến ngày nay. |
+
+**Phân tích từ gốc (UI: sơ đồ phân nhánh — tham chiếu slide thuật ngữ):**
+```
+Dân chủ = Demos + Kratos
+         ↓           ↓
+    Nhân dân    Quyền lực
+```
+- **Demos** (đỏ) → **Nhân dân**
+- **Kratos** (xanh đậm) → **Quyền lực**
+
+### II. Theo quan điểm Chủ nghĩa Mác – Lênin
+
+**Khái niệm tổng quát:** Dân chủ là:
+- Sản phẩm và thành quả của **quá trình đấu tranh giai cấp** cho giá trị tiến bộ nhân loại;
+- **Hình thức tổ chức nhà nước** của giai cấp cầm quyền;
+- Một trong các **nguyên tắc hoạt động** của tổ chức chính trị – xã hội.
+
+**Ba nội dung cơ bản:**
+
+1. **Phương diện quyền lực:** Quyền lực thuộc về nhân dân; nhân dân là chủ nhân nhà nước; mọi quyền lực nhà nước **vì nhân dân, phục vụ nhân dân**.
+2. **Phương diện chế độ XH & hình thức nhà nước:** Dân chủ là **hình thức / hình thái nhà nước**, là **chế độ dân chủ**.
+3. **Phương diện tổ chức & quản lý XH:** Dân chủ là **nguyên tắc** trong quản lý xã hội (nguyên tắc dân chủ).
+
+**Mối quan hệ giữa các phạm trù dân chủ:**
+
+| Phạm trù | Bản chất | Ghi chú ML |
+|----------|----------|------------|
+| **Mục tiêu / tiền đề / phương tiện** | Hướng tới **tự do**, giải phóng con người, giai cấp, xã hội | Dân chủ vừa là đích, vừa là con đường |
+| **Hình thức tổ chức thiết chế chính trị / hình thái nhà nước** | **Phạm trù lịch sử** — gắn nhà nước, **mất đi khi nhà nước tiêu vong** | Gắn với lịch sử nhà nước |
+| **Giá trị xã hội** | **Phạm trù vĩnh viễn** — tồn tại cùng con người và xã hội loài người | Chừng nào nhân loại còn, giá trị dân chủ còn |
+
+**Tóm tắt ML:** Dân chủ **vừa là mục tiêu, vừa là tiền đề, phương tiện** hướng tới tự do, giải phóng con người. Với tư cách **hình thức nhà nước** → phạm trù **lịch sử**; với tư cách **giá trị xã hội** → phạm trù **vĩnh viễn**.
+
+### III. Theo tư tưởng Hồ Chí Minh
+
+**Thứ nhất — Giá trị nhân loại chung:**
+- *"Dân chủ là dân là chủ và dân làm chủ"*
+- *"Nước ta là nước dân chủ, địa vị cao nhất là dân, vì dân là chủ"*
+
+**Thứ hai — Thể chế chính trị, chế độ xã hội:**
+- *"Chế độ ta là chế độ dân chủ, tức là nhân dân là người chủ, mà Chính phủ là người đầy tớ trung thành của nhân dân"*
+- *"Chính quyền dân chủ có nghĩa là chính quyền do người dân làm chủ"*
+- Khi đã là nước dân chủ: **"dân làm chủ"** — Chủ tịch, bộ trưởng, ủy viên **làm đầy tớ cho nhân dân**, không phải "quan cách mạng".
+
+**Tổng hợp HCM:** Dân chủ là **giá trị xã hội** (quyền cơ bản con người); **hình thức tổ chức nhà nước** của giai cấp cầm quyền; có **quá trình ra đời, phát triển** cùng lịch sử xã hội nhân loại.
+
+---
+
+## Phần 2 — (b) Sự ra đời, Phát triển của Dân chủ
+
+### Dòng thời gian các nền / giai đoạn (UI: timeline ngang — tham chiếu slide lịch sử)
+
+| Giai đoạn | Hình thức XH | Nền / chế độ dân chủ | Đặc trưng chính |
+|-----------|--------------|----------------------|-----------------|
+| **Cổ đại** | Cộng sản nguyên thủy | *Chưa có nền dân chủ* (tiền đề) | Xã hội tự quản cộng đồng thị tộc, bộ lạc |
+| **Chiếm hữu nô lệ** | — | **Nền dân chủ chủ nô** | Dân bầu nhà nước; "dân" = chủ nô + công dân tự do, **không gồm nô lệ** (đa số) |
+| **Phong kiến** | — | **Nền quân chủ phong kiến** / độc tài | Dân chủ chủ nô bị xóa; **không có bước tiến đáng kể** về ý thức dân chủ |
+| **Tư bản chủ nghĩa** | — | **Nền dân chủ tư sản** | Cuối TK XIV – đầu TK XV; tiến bộ về tự do, bình đẳng; thực tế do **thiểu số** nắm tư liệu SX đối với đại đa số lao động |
+| **Xã hội chủ nghĩa** | — | **Nền dân chủ vô sản (XHCN)** | CM Tháng Mười Nga **1917**; quyền lực **đại đa số** nhân dân |
+| **Tương lai** | **XH cộng sản chủ nghĩa** | *(mục tiêu)* | Điểm cuối trên trục tiến hóa (nhấn mạnh bằng đỏ trên slide) |
+
+### Chi tiết từng giai đoạn
+
+**Nền dân chủ nguyên thủy**
+- Xuất hiện sớm trong xã hội tự quản thị tộc, bộ lạc.
+- Nhân dân bầu **thủ lĩnh quân sự** qua **"Đại hội nhân dân"**; mọi người có quyền **phát biểu và biểu quyết**.
+
+**Nền dân chủ chủ nô**
+- LLSX phát triển → chế độ tư hữu, giai cấp → dân chủ nguyên thủy tan rã.
+- Dân tham gia bầu nhà nước nhưng phạm vi "dân" **hẹp**.
+
+**Thời kỳ phong kiến**
+- Thống trị **nhà nước chuyên chế phong kiến**; thay chế độ dân chủ chủ nô bằng **độc tài**.
+
+**Nền dân chủ tư sản**
+- Bước tiến lớn của nhân loại; hạn chế do nền tảng **tư hữu** về tư liệu sản xuất.
+
+**Nền dân chủ vô sản (dân chủ XHCN)**
+- Ra đời sau **Cách mạng Tháng Mười Nga 1917**.
+
+### Kết luận (ba nền dân chủ — hình thái nhà nước)
+
+Trong lịch sử nhân loại đến nay, với tư cách **hình thái nhà nước**, có **ba nền (chế độ) dân chủ**:
+
+1. **Nền dân chủ chủ nô** — chế độ chiếm hữu nô lệ  
+2. **Nền dân chủ tư sản** — chế độ tư bản chủ nghĩa  
+3. **Nền dân chủ xã hội chủ nghĩa** — chế độ xã hội chủ nghĩa  
+
+---
+
+## Ánh xạ Nội dung → UI (Reuse Philosophy)
+
+Giữ **cùng hệ component** và layout philosophy từ dự án VNR-Visual gốc (`Hero`, `SectionHeader`, `ArchivalCard`, `Stepper`, timeline, quote callouts). Chỉ **đổi nội dung và cấu trúc section**, không đổi design tokens (`blood`, `ink`, `cream`, `headline`, `serif`).
+
+### Đề xuất Information Architecture (mới)
+
+| Section | Nội dung | Pattern UI gợi ý |
+|---------|----------|-------------------|
+| **Hero** | Tiêu đề: *DÂN CHỦ* / *NHÂN DÂN LÀM CHỦ*; trích Hồ Chí Minh | Hero full-viewport, gradient ink, StampTag |
+| **Thuật ngữ** | Phần I — demoskratos, sơ đồ Demos/Kratos | **Split diagram**: hộp cha + 2 nhánh màu (đỏ / xanh) — như slide thuật ngữ |
+| **Ba quan điểm** | ML (3 phương diện + bảng phạm trù) + HCM (2 luận điểm + quotes) | **Grid 3 cột** hoặc **tabs**; `ArchivalCard` viền đỏ cho trích dẫn Bác |
+| **Phát triển lịch sử** | Phần 2 — timeline 6 mốc | **Horizontal Stepper/Timeline** — icon + tên XH + nhãn dân chủ bên dưới; mốc "tương lai" tone `blood` |
+| **Kết luận** | Ba nền dân chủ | **3 Callout cards** hoặc band đỏ/trắng xen kẽ (constructivist grid) |
+| **Footer** | Nguồn, học phần | Giữ style mono uppercase |
+
+### Tài sản tham chiếu hình ảnh (trong workspace)
+- **Sơ đồ thuật ngữ:** `assets/...image-f7fe1322...png` — layout parent → children, color-coded  
+- **Timeline phát triển:** `assets/...image-dc2569ef...png` — horizontal arrow, social system above, democracy label below  
+- **Poster constructivist:** `.cursor/rules/inspire.png` — alternating red/white bands, monumental type, B&W photo insets  
+
+### Quote / Slogan ưu tiên (Callout Cards)
+- *"Dân chủ là dân là chủ và dân làm chủ"* — Hồ Chí Minh  
+- *"Chế độ ta là chế độ dân chủ, tức là nhân dân là người chủ..."*  
+- *"Dân làm chủ thì Chủ tịch, bộ trưởng... làm đầy tớ cho nhân dân"*  
+
+### Màu semantic (bổ sung cho diagram, không thay palette chính)
+- **Demos / Nhân dân:** đỏ `#D32F2F` (trùng `blood`)  
+- **Kratos / Quyền lực:** xanh đậm `#1565C0` (accent phụ cho sơ đồ; phần còn lại giữ cream/ink/blood)  
+
+---
+
+## Phụ lục
+
+* **Nguồn kiểm chứng:** Giáo trình / tài liệu học phần (Dân chủ và pháp luật / Lịch sử Đảng — theo đề cương môn học).  
+* **Công cụ hỗ trợ:** ChatGPT, Gemini, NotebookLM (ghi nhận tính liêm chính học thuật).  
+* **Migration từ dự án cũ:** Thay toàn bộ `sections/*` data và copy; **giữ** `design.mdc`, Tailwind tokens, `Nav`, animation components.

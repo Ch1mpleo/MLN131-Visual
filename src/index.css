@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 48 56% 91%;
+    --foreground: 0 0% 10%;
+    --card: 48 40% 96%;
+    --card-foreground: 0 0% 10%;
+    --popover: 48 40% 96%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 68% 51%;
+    --primary-foreground: 48 56% 96%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 48 56% 96%;
+    --muted: 48 20% 85%;
+    --muted-foreground: 0 0% 25%;
+    --accent: 0 68% 51%;
+    --accent-foreground: 48 56% 96%;
+    --destructive: 0 68% 51%;
+    --destructive-foreground: 48 56% 96%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 0 68% 51%;
+    --radius: 0.25rem;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F5F5DC;
+    color: #1A1A1A;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: #D32F2F;
+    color: #F5F5DC;
+  }
+}
+
+@layer components {
+  .paper {
+    background-color: #F5F5DC;
+    background-image:
+      radial-gradient(1200px 600px at 10% 0%, rgba(0, 0, 0, 0.05), transparent),
+      radial-gradient(800px 400px at 90% 100%, rgba(0, 0, 0, 0.07), transparent);
+  }
+
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+  }
+
+  .headline {
+    font-family: "Archivo Black", "Epilogue", system-ui, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    /* 1.1 — tight but gives room for Vietnamese diacritics above & below */
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .serif {
+    font-family: "Newsreader", "Crimson Text", Georgia, serif;
+  }
+
+  .stamp {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    background: #D32F2F;
+    color: #F5F5DC;
+    font-family: "Archivo Black", sans-serif;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transform: rotate(-1.5deg);
+    box-shadow: 3px 3px 0 #1A1A1A;
+  }
+
+  .rule {
+    height: 4px;
+    background: #1A1A1A;
+  }
+
+  .rule-red {
+    height: 4px;
+    background: #D32F2F;
+  }
+
+  .hairline {
+    border-top: 1px solid rgba(26, 26, 26, 0.4);
+  }
+}
+
+/* Scrollbar — archival feel */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #ede6ce;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border: 2px solid #ede6ce;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d32f2f;
+}
