@@ -36,6 +36,9 @@ export default function Nav() {
     };
   }, []);
 
+  /** Transparent nav over dark sections (hero, timeline) needs light text */
+  const onDarkBackdrop = !scrolled && (active === "hero" || active === "timeline");
+
   return (
     <nav
       className={cn(
@@ -56,25 +59,47 @@ export default function Nav() {
             </svg>
           </span>
           <span className="hidden sm:flex flex-col leading-tight">
-            <span className="font-headline text-base tracking-tight uppercase text-ink">
+            <span
+              className={cn(
+                "font-headline text-base tracking-tight uppercase transition-colors",
+                onDarkBackdrop ? "text-cream" : "text-ink",
+              )}
+            >
               DÂN CHỦ
             </span>
-            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-ink/60">
+            <span
+              className={cn(
+                "font-mono text-[10px] tracking-[0.25em] uppercase transition-colors",
+                onDarkBackdrop ? "text-cream/65" : "text-ink/60",
+              )}
+            >
               Lý luận chính trị
             </span>
           </span>
         </a>
 
-        <ul className="hidden md:flex items-stretch gap-0 border-l-2 border-ink">
+        <ul
+          className={cn(
+            "hidden md:flex items-stretch gap-0 border-l-2",
+            onDarkBackdrop ? "border-cream/25" : "border-ink",
+          )}
+        >
           {SECTIONS.map((s) => {
             const isActive = s.id === active;
             return (
-              <li key={s.id} className="border-r-2 border-ink">
+              <li
+                key={s.id}
+                className={cn("border-r-2", onDarkBackdrop ? "border-cream/25" : "border-ink")}
+              >
                 <a
                   href={`#${s.id}`}
                   className={cn(
                     "group flex flex-col px-4 py-2 transition-colors",
-                    isActive ? "bg-ink text-cream" : "hover:bg-ink/10",
+                    isActive
+                      ? "bg-blood text-cream"
+                      : onDarkBackdrop
+                        ? "text-cream/85 hover:bg-cream/10"
+                        : "text-ink hover:bg-ink/10",
                   )}
                 >
                   <span className="font-mono text-[10px] tracking-[0.2em] uppercase opacity-70">
