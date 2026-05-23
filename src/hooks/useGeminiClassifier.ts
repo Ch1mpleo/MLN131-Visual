@@ -241,13 +241,14 @@ ${userText.trim()}
 
       const text = await callGemini(
         SYSTEM_CONTEXT,
-        `Tạo một mô tả xã hội/chế độ MƠ HỒ (2–4 câu tiếng Việt), trộn đặc trưng của HAI giai đoạn:
-- Giai đoạn A [${eraA}]: ${eraAData.text} — ${eraAData.label}
-- Giai đoạn B [${eraB}]: ${eraBData.text} — ${eraBData.label}
+        `Tạo mô tả xã hội/chế độ MƠ HỒ, trộn HAI giai đoạn:
+- A [${eraA}]: ${eraAData.text} — ${eraAData.label}
+- B [${eraB}]: ${eraBData.text} — ${eraBData.label}
 
-Không nêu tên giai đoạn trong mô tả. Chia tỷ lệ pct_a + pct_b = 100 (ví dụ 65/35, 70/30).
+Ràng buộc description: TỐI ĐA 2 câu ngắn, tổng ≤ 35 từ. Không nêu tên giai đoạn.
+pct_a + pct_b = 100. explanation ≤ 1 câu.
 Trả JSON:
-{"description":"...","pct_a":number,"pct_b":number,"explanation":"giải thích ngắn tại sao mơ hồ"}`,
+{"description":"...","pct_a":number,"pct_b":number,"explanation":"..."}`,
       );
 
       const parsed = parseScenarioResult(extractJson(text), eraA, eraB);
