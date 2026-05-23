@@ -32,11 +32,8 @@ export default function Hero() {
           <div className="col-span-12 flex flex-col gap-3 md:col-span-6 md:gap-4 lg:col-span-7">
             <div className="flex items-center gap-3">
               <StampTag tone="red" rotate={-2} className="text-[10px] md:text-xs">
-                Lý luận chính trị
+              MLN131
               </StampTag>
-              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-cream/60 md:text-[10px]">
-                MLN131
-              </span>
             </div>
 
             <div>
@@ -68,7 +65,7 @@ export default function Hero() {
             </div>
 
             <p className="serif max-w-sm border-l-4 border-blood pl-4 text-sm italic leading-relaxed text-cream/80 md:text-base">
-              "Dân chủ là dân là chủ và dân làm chủ."
+              "Dân là chủ và dân làm chủ."
               <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-widest text-cream/50 not-italic md:text-[10px]">
                 — Hồ Chí Minh
               </span>

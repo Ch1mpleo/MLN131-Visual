@@ -7,6 +7,9 @@ import FlowingMenu from "@/components/FlowingMenu";
 
 const MENU_ROW_HEIGHT = 76;
 
+//https://lichsuvietnam.org/wp-content/uploads/2025/11/1789-3.jpg
+
+
 const ERAS = [
   {
     id: "era-1",
@@ -73,9 +76,9 @@ const ERAS = [
     period: "Cuối TK XIV – đầu TK XV",
     demType: "Dân chủ tư sản",
     demColor: "bg-bone text-ink",
-    photoCaption: "Cách mạng tư sản — tự do, bình đẳng, bác ái",
+    photoCaption: "Cách mạng tư sản Pháp :)",
     photoYear: "1789",
-    photoSrc: "https://cdn.luatminhkhue.vn/lmk/articles/83/419593/cac-dinh-luat-chung-cua-tu-ban-chu-nghia-419593.jpg",
+    photoSrc: "https://image.api.playstation.com/vulcan/img/rnd/202010/0220/lX4FGJHDVSy8szMS7fRrevmY.jpg",
     features: [
       "Giai cấp tư sản mở đường cho nền dân chủ tư sản",
       "Bước tiến lớn: tự do, bình đẳng, dân chủ",

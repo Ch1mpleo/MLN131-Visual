@@ -113,19 +113,19 @@ export default function Conclusion() {
         </div>
 
         {/* Finishing line — on section background, no wrapper box */}
-        <div className="relative mt-14 md:mt-20 pt-10 md:pt-14 border-t-4 border-blood">
-          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-ink/45 block text-center mb-5">
-            Chủ nghĩa Mác–Lênin · Tổng kết
+        <div className="relative mt-14 md:mt-20 border-t-4 border-blood pt-10 md:pt-14">
+          <span className="mb-6 block text-center font-mono text-xs font-semibold uppercase tracking-[0.2em] text-ink/75 md:mb-7 md:text-sm">
+            Tổng kết
           </span>
-          <p className="headline text-center text-balance text-ink max-w-5xl mx-auto text-[clamp(1.35rem,3.5vw,2.6rem)] leading-[1.12]">
+          <p className="headline mx-auto max-w-5xl text-center text-balance text-ink text-[clamp(1.35rem,3.5vw,2.6rem)] leading-[1.12]">
             <span className="text-blood">DÂN CHỦ</span> VỪA LÀ MỤC TIÊU, VỪA LÀ TIỀN ĐỀ VÀ PHƯƠNG TIỆN ĐỂ VƯƠN TỚI TỰ DO, GIẢI PHÓNG CON NGƯỜI.
           </p>
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <span className="h-px w-16 bg-blood/70" aria-hidden />
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-blood">
+          <div className="mt-8 flex items-center justify-center gap-4 md:mt-10 md:gap-5">
+            <span className="h-0.5 w-12 bg-blood/70 md:w-20" aria-hidden />
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-blood md:text-sm">
               Nhân dân làm chủ
             </span>
-            <span className="h-px w-16 bg-blood/70" aria-hidden />
+            <span className="h-0.5 w-12 bg-blood/70 md:w-20" aria-hidden />
           </div>
         </div>
       </div>

@@ -140,12 +140,12 @@ export default function Terminology() {
               ].map((f) => (
                 <div
                   key={f.label}
-                  className="flex min-h-[5.5rem] flex-col items-center justify-center border border-ink/15 bg-ink/5 px-4 py-5 text-center md:min-h-[6.5rem] md:py-6"
+                  className="flex min-h-[6rem] flex-col items-center justify-center gap-2 border-2 border-ink/20 bg-ink/5 px-4 py-5 text-center md:min-h-[7rem] md:gap-2.5 md:px-5 md:py-6"
                 >
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink/50 md:text-[10px]">
+                  <span className="font-mono text-xs font-semibold uppercase tracking-[0.15em] text-ink/80 md:text-sm">
                     {f.label}
                   </span>
-                  <span className="mt-1.5 font-headline text-sm uppercase text-ink font-black md:text-base">
+                  <span className="headline text-base uppercase leading-tight text-ink md:text-lg">
                     {f.value}
                   </span>
                 </div>
