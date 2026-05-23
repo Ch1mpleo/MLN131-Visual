@@ -7,7 +7,8 @@ const SECTIONS = [
   { id: "terminology", label: "Thuật ngữ", year: "I" },
   { id: "viewpoints", label: "Quan niệm", year: "II" },
   { id: "timeline", label: "Lịch sử", year: "III" },
-  { id: "conclusion", label: "Kết luận", year: "KL" },
+  { id: "conclusion", label: "Kết luận", year: "IV" },
+  { id: "classifier", label: "AI", year: "V" },
 ];
 
 export default function Nav() {
@@ -114,13 +115,15 @@ export default function Nav() {
           })}
         </ul>
 
-        <a
-          href="#conclusion"
-          className="hidden lg:inline-flex items-center gap-2 bg-blood text-cream px-5 py-2.5 font-headline text-sm uppercase tracking-wide shadow-[3px_3px_0_#1A1A1A] hover:-translate-y-0.5 transition-transform"
-        >
-          <span className="h-1.5 w-1.5 bg-flagYellow animate-pulse" />
-          Kết luận →
-        </a>
+        <div className="hidden lg:flex items-center gap-3">
+          <a
+            href="#minigame"
+            className="inline-flex items-center gap-2 bg-blood text-cream px-5 py-2.5 font-headline text-sm uppercase tracking-wide shadow-[3px_3px_0_#1A1A1A] hover:-translate-y-0.5 transition-transform"
+          >
+            <span className="h-1.5 w-1.5 bg-flagYellow animate-pulse" />
+            Minigame →
+          </a>
+        </div>
       </div>
     </nav>
   );

@@ -4,6 +4,7 @@ import Terminology from "@/sections/Terminology";
 import Viewpoints from "@/sections/Viewpoints";
 import DemocracyTimeline from "@/sections/DemocracyTimeline";
 import Conclusion from "@/sections/Conclusion";
+import AIClassifier from "@/sections/AIClassifier";
 import Footer from "@/sections/Footer";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
       <Viewpoints />
       <DemocracyTimeline />
       <Conclusion />
+      <AIClassifier />
       <Footer />
     </main>
   );

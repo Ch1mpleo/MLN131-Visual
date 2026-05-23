@@ -5,7 +5,7 @@ import CornerEmblem from "@/components/ui/CornerEmblem";
 
 const IMG_SLAVE = "https://cdn.luatminhkhue.vn/lmk/articles/71/357604/kieu-nha-nuoc-chu-no-la-gi---tim-hieu-ve-kieu-nha-nuoc-chu-no-357604.jpg";
 const IMG_BOURGEOIS = "https://tiasang.gitlab.io/history/wihm/images/cover.jpg";
-const IMG_SOCIALIST = "https://redsvn.net/wp-content/uploads/2023/06/Lenin.jpg";
+const IMG_SOCIALIST = "https://lh6.googleusercontent.com/proxy/5ueoij3nLQDhv6_N1XblVjZURvL0gJ4hpN3X61gYiqlwIT2ZafJMnucZZK3RlrfxPF3bn74GkbHq9RqSPwj-XxqnuD1lVKe7Aw";
 
 const THREE_DEMOCRACIES = [
   {
