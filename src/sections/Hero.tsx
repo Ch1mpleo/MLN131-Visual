@@ -96,15 +96,10 @@ export default function Hero() {
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-cream/5 mix-blend-multiply" />
                     <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-cream/20" />
 
-                    {/* Year stamp */}
-                    <div className="absolute left-0 top-0 bg-blood px-4 py-2 font-headline text-sm uppercase tracking-wide text-cream shadow-[4px_4px_0_#1A1A1A] md:text-base">
-                      1946
-                    </div>
-
                     {/* Archive label */}
                     <div className="absolute bottom-0 left-0 right-0 border-t-2 border-cream/30 bg-ink/85 px-4 py-3 backdrop-blur-[2px]">
                       <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-cream/55">
-                        Tư liệu lưu trữ
+                        Tư liệu
                       </p>
                       <p className="headline mt-0.5 text-base leading-none text-cream md:text-lg">
                         HỒ CHÍ MINH
@@ -113,10 +108,6 @@ export default function Hero() {
                   </div>
                 </div>
               </div>
-
-              <figcaption className="mt-3 hidden font-mono text-[9px] uppercase tracking-[0.22em] text-cream/45 md:block">
-                Chân dung Chủ tịch Hồ Chí Minh · Năm 1946
-              </figcaption>
             </figure>
           </div>
         </div>
