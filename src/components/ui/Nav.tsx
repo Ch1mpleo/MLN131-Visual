@@ -116,13 +116,14 @@ export default function Nav() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a
-            href="#minigame"
+          <button
+            type="button"
+            onClick={() => navigate("/game-ai")}
             className="inline-flex items-center gap-2 bg-blood text-cream px-5 py-2.5 font-headline text-sm uppercase tracking-wide shadow-[3px_3px_0_#1A1A1A] hover:-translate-y-0.5 transition-transform"
           >
             <span className="h-1.5 w-1.5 bg-flagYellow animate-pulse" />
             Minigame →
-          </a>
+          </button>
         </div>
       </div>
     </nav>

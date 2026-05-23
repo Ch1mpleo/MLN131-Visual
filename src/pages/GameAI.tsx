@@ -246,11 +246,8 @@ function TopBar({
           onClick={onExit}
           className="font-mono text-sm uppercase tracking-[0.25em] text-ink/70 hover:text-blood"
         >
-          ← Về bảo tàng
+          ← Quay về
         </button>
-        <StampTag tone="red" rotate={-2}>
-          Phán Quyết AI
-        </StampTag>
         <button
           type="button"
           onClick={onHome}
@@ -309,7 +306,7 @@ function LobbyScreen({
         </h1>
         <p className="serif text-xl italic text-ink/80 max-w-xl border-l-4 border-blood pl-6 mt-6">
           AI soạn mô tả mơ hồ trộn hai giai đoạn. Người chơi đoán giai đoạn chủ
-          đạo — đúng chủ đạo +3 điểm, đúng phụ +1 điểm.
+          đạo
         </p>
         <ul className="mt-6 space-y-3 serif text-lg text-ink/85">
           <li>

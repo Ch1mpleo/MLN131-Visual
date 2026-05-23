@@ -3,6 +3,8 @@ import { ERAS } from "@/data/democracyErasData";
 import { cn } from "@/lib/utils";
 import type { ClassifyResult } from "@/hooks/useGeminiClassifier";
 
+const ERA_COUNT = ERAS.length;
+
 /** Timeline strip colors — aligned with course infographic */
 const ERA_STRIP: Record<number, string> = {
   0: "bg-stone-400",
@@ -13,9 +15,9 @@ const ERA_STRIP: Record<number, string> = {
   5: "bg-blood",
 };
 
+/** Center of era column i on a 6-column grid (matches CSS grid cell centers) */
 function eraCenterPercent(index: number): number {
-  if (ERAS.length <= 1) return 50;
-  return (index / (ERAS.length - 1)) * 100;
+  return ((index + 0.5) / ERA_COUNT) * 100;
 }
 
 function weightedPosition(result: ClassifyResult): number {
@@ -34,11 +36,16 @@ function weightedPosition(result: ClassifyResult): number {
 type Props = {
   result?: ClassifyResult | null;
   showMarker?: boolean;
+  size?: "default" | "large";
 };
 
-export default function ClassifierTimeline({ result, showMarker = false }: Props) {
+export default function ClassifierTimeline({
+  result,
+  showMarker = false,
+  size = "default",
+}: Props) {
+  const large = size === "large";
   const hasResult = showMarker && result != null;
-  const markerLeft = hasResult && result ? weightedPosition(result) : 50;
 
   const primary = result?.primary_era ?? -1;
   const secondary = result?.secondary_era ?? -1;
@@ -54,11 +61,24 @@ export default function ClassifierTimeline({ result, showMarker = false }: Props
 
   const rangeLeft = eraCenterPercent(rangeMin);
   const rangeRight = eraCenterPercent(rangeMax);
+  const markerLeft = hasResult && result ? weightedPosition(result) : 50;
+
+  const leftPctInRange =
+    hasResult && result && result.secondary_era !== null
+      ? result.primary_era === rangeMin
+        ? result.primary_pct
+        : (result.secondary_pct ?? 0)
+      : 100;
 
   return (
     <div className="w-full">
-      {/* Era labels + nodes */}
-      <div className="relative grid grid-cols-6 gap-1 md:gap-0 mb-2">
+      {/* Unified 6-column grid: nodes + labels share columns with track below */}
+      <div
+        className={cn(
+          "grid grid-cols-6",
+          large ? "gap-x-1 sm:gap-x-2" : "gap-x-0.5 sm:gap-x-1",
+        )}
+      >
         {ERAS.map((era, i) => {
           const isPrimary = hasResult && i === primary;
           const isSecondary = hasResult && i === secondary;
@@ -68,34 +88,36 @@ export default function ClassifierTimeline({ result, showMarker = false }: Props
           return (
             <div
               key={era.id}
-              className="flex flex-col items-center text-center px-0.5"
+              className="flex flex-col items-center text-center justify-start"
             >
               <motion.div
                 className={cn(
-                  "mb-2 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center border-2 font-headline text-sm md:text-base transition-colors",
+                  "flex shrink-0 items-center justify-center border-2 font-headline transition-colors",
+                  large
+                    ? "mb-3 h-14 w-14 sm:h-16 sm:w-16 md:h-[4.25rem] md:w-[4.25rem] text-lg md:text-2xl"
+                    : "mb-2 h-10 w-10 md:h-11 md:w-11 text-sm md:text-base",
                   ERA_STRIP[i],
                   isPrimary
-                    ? "border-ink text-cream shadow-[4px_4px_0_#1A1A1A] scale-110 z-10"
+                    ? "border-ink text-cream shadow-[4px_4px_0_#1A1A1A] z-10"
                     : isSecondary
-                      ? "border-ink text-cream shadow-[3px_3px_0_#1A1A1A] opacity-90"
+                      ? "border-ink text-cream shadow-[3px_3px_0_#1A1A1A]"
                       : inRange
-                        ? "border-ink/60 text-cream opacity-70"
+                        ? "border-ink/60 text-cream opacity-75"
                         : hasResult
                           ? "border-ink/20 opacity-35"
-                          : "border-ink text-cream opacity-80",
+                          : "border-ink text-cream",
                 )}
-                animate={
-                  isPrimary
-                    ? { scale: [1, 1.08, 1.05] }
-                    : { scale: 1 }
-                }
-                transition={{ duration: 0.4 }}
+                animate={isPrimary ? { scale: [1, 1.06, 1.04] } : { scale: 1 }}
+                transition={{ duration: 0.35 }}
               >
                 {i + 1}
               </motion.div>
               <span
                 className={cn(
-                  "font-headline text-[9px] md:text-[10px] uppercase leading-tight tracking-tight",
+                  "font-headline uppercase leading-tight tracking-tight px-0.5",
+                  large
+                    ? "text-[9px] sm:text-[10px] md:text-xs min-h-[2.25rem] md:min-h-[2.5rem]"
+                    : "text-[8px] sm:text-[9px]",
                   isPrimary || isSecondary
                     ? "text-ink"
                     : hasResult
@@ -103,127 +125,150 @@ export default function ClassifierTimeline({ result, showMarker = false }: Props
                       : "text-ink/70",
                 )}
               >
-                {era.label.split(" ").slice(0, 3).join(" ")}
+                {large ? era.label : era.label.split(" ").slice(0, 3).join(" ")}
               </span>
               <span
                 className={cn(
-                  "mt-0.5 hidden font-mono text-[8px] uppercase tracking-[0.12em] sm:block",
+                  "mt-0.5 font-mono uppercase tracking-[0.1em] leading-tight",
+                  large
+                    ? "text-[8px] sm:text-[9px] md:text-[10px]"
+                    : "text-[7px] sm:text-[8px]",
                   isPrimary || isSecondary ? "text-blood" : "text-ink/40",
                 )}
               >
-                {era.text.split(" ").slice(0, 2).join(" ")}
+                {large ? era.text : era.text.split(" ").slice(0, 2).join(" ")}
               </span>
             </div>
           );
         })}
-      </div>
 
-      {/* Track */}
-      <div className="relative mx-2 md:mx-5 h-4 md:h-5">
-        <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-ink/15" />
-        <div className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 border-t-2 border-dashed border-ink/25" />
+        {/* Track — same grid, spans all columns */}
+        <div
+          className={cn(
+            "col-span-6 relative w-full",
+            large ? "mt-6 h-10 md:h-12" : "mt-4 h-7 md:h-8",
+          )}
+        >
+          {/* Baseline */}
+          <div className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 bg-ink/20" />
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 border-t-2 border-dashed border-ink/20" />
 
-        {/* Inactive era ticks */}
-        {ERAS.map((_, i) => (
-          <div
-            key={i}
-            className="absolute top-1/2 h-3 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-ink/25"
-            style={{ left: `${eraCenterPercent(i)}%` }}
-          />
-        ))}
-
-        {/* Highlighted span between primary & secondary */}
-        {hasResult && result && rangeMin !== rangeMax && (() => {
-          const leftEra = rangeMin;
-          const leftPct =
-            result.primary_era === leftEra
-              ? result.primary_pct
-              : (result.secondary_pct ?? 0);
-          const rightPct =
-            result.primary_era === rangeMax
-              ? result.primary_pct
-              : (result.secondary_pct ?? 0);
-          return (
-          <motion.div
-            className="absolute top-1/2 h-2 -translate-y-1/2 overflow-hidden border border-ink"
-            style={{
-              left: `${rangeLeft}%`,
-              width: `${rangeRight - rangeLeft}%`,
-            }}
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
+          {/* Tick at each era center — aligned to grid columns */}
+          {ERAS.map((_, i) => (
             <div
-              className="absolute inset-y-0 left-0 bg-blood"
-              style={{ width: `${leftPct}%` }}
+              key={`tick-${i}`}
+              className="absolute top-1/2 z-[1] w-0.5 -translate-x-1/2 -translate-y-1/2 bg-ink/40"
+              style={{
+                left: `${eraCenterPercent(i)}%`,
+                height: large ? "1rem" : "0.75rem",
+              }}
             />
-            <div
-              className="absolute inset-y-0 right-0 bg-ink/70"
-              style={{ width: `${rightPct}%` }}
+          ))}
+
+          {/* Split range bar between two eras */}
+          {hasResult && result && rangeMin !== rangeMax && (
+            <motion.div
+              className={cn(
+                "absolute top-1/2 z-[2] -translate-y-1/2 overflow-hidden border border-ink",
+                large ? "h-3 md:h-3.5" : "h-2",
+              )}
+              style={{
+                left: `${rangeLeft}%`,
+                width: `${rangeRight - rangeLeft}%`,
+                transform: "translateY(-50%)",
+              }}
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+            >
+              <div
+                className="absolute inset-y-0 left-0 bg-blood"
+                style={{ width: `${leftPctInRange}%` }}
+              />
+              <div
+                className="absolute inset-y-0 right-0 bg-ink/75"
+                style={{ width: `${100 - leftPctInRange}%` }}
+              />
+            </motion.div>
+          )}
+
+          {/* Single-era dot */}
+          {hasResult && result && rangeMin === rangeMax && primary >= 0 && (
+            <motion.div
+              className={cn(
+                "absolute top-1/2 z-[3] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-ink bg-blood shadow-[2px_2px_0_#1A1A1A]",
+                large ? "h-5 w-5 md:h-6 md:w-6" : "h-3.5 w-3.5",
+              )}
+              style={{ left: `${markerLeft}%` }}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 280, damping: 20 }}
             />
-          </motion.div>
-          );
-        })()}
+          )}
 
-        {/* Single-era fill */}
-        {hasResult && result && rangeMin === rangeMax && primary >= 0 && (
-          <motion.div
-            className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-ink bg-blood shadow-[2px_2px_0_#1A1A1A]"
-            style={{ left: `${markerLeft}%` }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 280, damping: 20 }}
-          />
-        )}
-
-        {/* Split marker + label on line */}
-        {hasResult &&
-          result &&
-          result.secondary_era !== null &&
-          result.secondary_pct !== null && (
-            <>
+          {/* Split marker — sits on weighted position along axis */}
+          {hasResult &&
+            result &&
+            result.secondary_era !== null &&
+            result.secondary_pct !== null && (
               <motion.div
-                className="absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+                className="absolute top-1/2 z-[4] -translate-x-1/2"
                 style={{ left: `${markerLeft}%` }}
-                initial={{ scale: 0, y: 8 }}
+                initial={{ scale: 0, y: 6 }}
                 animate={{ scale: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 260, damping: 18 }}
               >
-                <div className="flex flex-col items-center">
-                  <div className="border-2 border-ink bg-flagYellow px-2 py-0.5 font-mono text-[10px] md:text-xs font-bold uppercase tracking-wide whitespace-nowrap shadow-[2px_2px_0_#1A1A1A]">
+                <div className="flex flex-col items-center -translate-y-full pb-0">
+                  <div
+                    className={cn(
+                      "border-2 border-ink bg-flagYellow font-mono font-bold uppercase tracking-wide whitespace-nowrap shadow-[2px_2px_0_#1A1A1A]",
+                      large
+                        ? "px-3 py-1 text-xs md:text-sm"
+                        : "px-2 py-0.5 text-[10px]",
+                    )}
+                  >
                     {result.primary_pct}/{result.secondary_pct}
                   </div>
-                  <div className="h-0 w-0 border-x-[6px] border-x-transparent border-t-[6px] border-t-ink" />
-                  <div className="h-4 w-1 bg-ink" />
+                  <div className="h-0 w-0 border-x-[5px] border-x-transparent border-t-[5px] border-t-ink" />
                 </div>
+                <div
+                  className={cn(
+                    "absolute left-1/2 top-0 w-0.5 -translate-x-1/2 bg-ink",
+                    large ? "h-5 md:h-6" : "h-4",
+                  )}
+                />
               </motion.div>
-            </>
-          )}
+            )}
 
-        {/* 100% label above single-era marker */}
-        {hasResult &&
-          result &&
-          result.secondary_era === null &&
-          primary >= 0 && (
-            <motion.div
-              className="absolute -top-7 -translate-x-1/2 font-mono text-[10px] font-bold uppercase tracking-wider text-blood"
-              style={{ left: `${markerLeft}%` }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              100%
-            </motion.div>
-          )}
+          {/* 100% label */}
+          {hasResult &&
+            result &&
+            result.secondary_era === null &&
+            primary >= 0 && (
+              <motion.div
+                className={cn(
+                  "absolute z-[4] -translate-x-1/2 font-mono font-bold uppercase tracking-wider text-blood whitespace-nowrap",
+                  large ? "bottom-full mb-1 text-xs md:text-sm" : "bottom-full mb-0.5 text-[10px]",
+                )}
+                style={{ left: `${markerLeft}%` }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                100%
+              </motion.div>
+            )}
+        </div>
       </div>
 
-      {/* Legend under track when split */}
       {hasResult && result && result.secondary_era !== null && (
         <motion.div
-          className="mt-8 flex flex-wrap justify-center gap-4 md:gap-8"
+          className={cn(
+            "flex flex-wrap justify-center",
+            large ? "mt-8 gap-6 md:gap-10" : "mt-6 gap-4",
+          )}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25 }}
+          transition={{ delay: 0.2 }}
         >
           <LegendChip
             color="bg-blood"
@@ -256,12 +301,12 @@ function LegendChip({
 }) {
   return (
     <div className="flex items-center gap-2">
-      <span className={cn("h-3 w-3 border border-ink", color)} />
+      <span className={cn("h-3 w-3 border border-ink shrink-0", color)} />
       <div>
         <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink/55">
           {role}
         </span>
-        <p className="font-headline text-xs uppercase text-ink">
+        <p className="font-headline text-xs md:text-sm uppercase text-ink">
           {label}{" "}
           <span className="text-blood">{pct}%</span>
         </p>
