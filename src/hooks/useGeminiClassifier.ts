@@ -241,12 +241,17 @@ ${userText.trim()}
 
       const text = await callGemini(
         SYSTEM_CONTEXT,
-        `Tạo mô tả xã hội/chế độ MƠ HỒ, trộn HAI giai đoạn:
+        `Tạo một tình huống ngắn dạng kể chuyện (mini vignette), trộn đặc trưng HAI giai đoạn:
 - A [${eraA}]: ${eraAData.text} — ${eraAData.label}
 - B [${eraB}]: ${eraBData.text} — ${eraBData.label}
 
-Ràng buộc description: TỐI ĐA 2 câu ngắn, tổng ≤ 35 từ. Không nêu tên giai đoạn.
-pct_a + pct_b = 100. explanation ≤ 1 câu.
+Ràng buộc description:
+- Viết 2–3 câu (tổng 45–70 từ), góc nhìn người quan sát hoặc công dân trong bối cảnh cụ thể.
+- Mô tả qua chi tiết sinh hoạt, quyền bầu cử, ai bị loại trừ, ai nắm quyền — KHÔNG định nghĩa sách giáo khoa.
+- Cấm nêu tên giai đoạn, thuật ngữ ML/Marxist, hoặc từ khóa quá dễ đoán (vd: "nô lệ", "tư sản", "phong kiến" nếu lộ đáp án).
+- Có thể dùng tên địa danh/giả định, thời điểm mơ hồ, một sự kiện nhỏ trong ngôi làng hoặc thành phố.
+
+pct_a + pct_b = 100. explanation: 1–2 câu giải thích vì sao trộn hai giai đoạn (≤ 40 từ).
 Trả JSON:
 {"description":"...","pct_a":number,"pct_b":number,"explanation":"..."}`,
       );

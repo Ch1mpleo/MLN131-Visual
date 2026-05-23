@@ -11,6 +11,8 @@ interface HistoricPhotoProps {
   src?: string;
   alt: string;
   caption?: string;
+  captionIcon?: string;
+  captionIconAlt?: string;
   credit?: string;
   year?: string;
   className?: string;
@@ -41,6 +43,8 @@ export default function HistoricPhoto({
   src,
   alt,
   caption,
+  captionIcon,
+  captionIconAlt,
   credit,
   year,
   className,
@@ -195,7 +199,16 @@ export default function HistoricPhoto({
         {(caption || credit) && (
           <figcaption className="flex items-start justify-between gap-4 bg-ink text-cream px-4 py-2.5">
             {caption && (
-              <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.25em] leading-snug flex-1">
+              <p className="flex flex-1 items-center gap-2 font-mono text-[9px] uppercase leading-snug tracking-[0.25em] md:text-[10px]">
+                {captionIcon && (
+                  <img
+                    src={captionIcon}
+                    alt={captionIconAlt ?? ""}
+                    width={32}
+                    height={32}
+                    className="shrink-0"
+                  />
+                )}
                 {caption}
               </p>
             )}

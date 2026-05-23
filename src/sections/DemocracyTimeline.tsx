@@ -18,6 +18,8 @@ function EraDetailPanel({ era }: { era: Era }) {
           <HistoricPhoto
             alt={era.photoCaption}
             caption={era.photoCaption}
+            captionIcon={"photoCaptionIcon" in era ? era.photoCaptionIcon : undefined}
+            captionIconAlt={"photoCaptionIconAlt" in era ? era.photoCaptionIconAlt : undefined}
             year={era.photoYear}
             src={era.photoSrc || undefined}
             aspect="landscape"
@@ -96,12 +98,9 @@ export default function DemocracyTimeline() {
         </div>
 
         <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cream/55">
-            Nhấn từng dòng để mở / đóng chi tiết giai đoạn
-          </p>
           <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-blood">
             <MousePointerClick className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden />
-            Di chuột hoặc nhấn
+            Di chuột hoặc nhấn vào từng giai đoạn
           </span>
         </div>
 

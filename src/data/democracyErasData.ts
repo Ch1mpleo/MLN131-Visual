@@ -74,7 +74,9 @@ export const ERAS = [
     period: "Cuối TK XIV – đầu TK XV",
     demType: "Dân chủ tư sản",
     demColor: "bg-bone text-ink",
-    photoCaption: "Cách mạng tư sản Pháp",
+    photoCaption: "Cách mạng tư sản Pháp :)",
+    photoCaptionIcon: "https://img.icons8.com/windows/32/FFFFFF/assassins-creed.png",
+    photoCaptionIconAlt: "assassins-creed",
     photoYear: "1789",
     photoSrc:
       "https://image.api.playstation.com/vulcan/img/rnd/202010/0220/lX4FGJHDVSy8szMS7fRrevmY.jpg",

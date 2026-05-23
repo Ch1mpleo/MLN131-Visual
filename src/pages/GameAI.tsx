@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 
 const ROUND_COUNT = 5;
 const MAX_PICKS = 2;
+const GAME_TITLE = "Hồ Sơ Thời Đại";
+const GAME_TITLE_FULL = `${GAME_TITLE} AI`;
 
 type Stage = "lobby" | "generating" | "playing" | "revealing" | "finished";
 
@@ -78,20 +80,20 @@ function ScenarioBrief({
           </div>
 
           {clues.length === 1 ? (
-            <p className="serif text-base md:text-[1.05rem] text-ink leading-relaxed">
+            <p className="serif text-lg md:text-xl lg:text-[1.35rem] text-ink leading-relaxed">
               {clues[0]}
             </p>
           ) : (
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {clues.map((line, i) => (
                 <li
                   key={i}
                   className="flex gap-3 border-l-2 border-blood/40 pl-3"
                 >
-                  <span className="font-headline text-xs text-blood shrink-0 pt-0.5">
+                  <span className="font-headline text-sm text-blood shrink-0 pt-0.5">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="serif text-base text-ink leading-snug">
+                  <span className="serif text-lg md:text-xl text-ink leading-snug">
                     {line}
                   </span>
                 </li>
@@ -113,13 +115,16 @@ export default function GameAI() {
   const { generateScenario, loading, error } = useGeminiClassifier();
 
   useEffect(() => {
-    document.title = "Phán Quyết AI · Dân chủ";
+    document.title = `${GAME_TITLE_FULL} · Dân chủ`;
   }, []);
 
-  const startRound = async () => {
+  const startRound = async (nextIndex?: number) => {
     setStage("generating");
     setScenario(null);
     setPickedEras([]);
+    if (nextIndex !== undefined) {
+      setRoundIndex(nextIndex);
+    }
     try {
       const next = await generateScenario();
       setScenario(next);
@@ -130,9 +135,8 @@ export default function GameAI() {
   };
 
   const startGame = async () => {
-    setRoundIndex(0);
     setRecords([]);
-    await startRound();
+    await startRound(0);
   };
 
   const toggleEra = (eraIndex: number) => {
@@ -159,13 +163,18 @@ export default function GameAI() {
       setStage("finished");
       return;
     }
-    setRoundIndex((i) => i + 1);
-    await startRound();
+    await startRound(roundIndex + 1);
   };
 
   const lastRecord = records[records.length - 1];
-  const revealScenario = lastRecord?.scenario ?? scenario;
-  const revealPicks = lastRecord?.pickedEras ?? pickedEras;
+  const activeScenario =
+    stage === "revealing"
+      ? (lastRecord?.scenario ?? scenario)
+      : scenario;
+  const activePicks =
+    stage === "revealing"
+      ? (lastRecord?.pickedEras ?? pickedEras)
+      : pickedEras;
 
   return (
     <div className="relative min-h-screen paper overflow-hidden">
@@ -227,17 +236,17 @@ export default function GameAI() {
             </motion.div>
           )}
 
-          {(stage === "playing" || stage === "revealing") && revealScenario && (
+          {(stage === "playing" || stage === "revealing") && activeScenario && (
             <motion.div
-              key={`round-${roundIndex}-${stage}`}
+              key={`round-${roundIndex}-${stage}-${activeScenario.description.slice(0, 24)}`}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
             >
               <RoundView
-                scenario={revealScenario}
+                scenario={activeScenario}
                 roundIndex={roundIndex}
-                pickedEras={revealPicks}
+                pickedEras={activePicks}
                 stage={stage}
                 onToggle={toggleEra}
                 onConfirm={handleConfirm}
@@ -298,7 +307,7 @@ function TopBar({
           ← Quay về
         </button>
         <StampTag tone="red" rotate={-2}>
-          Phán Quyết AI
+          {GAME_TITLE_FULL}
         </StampTag>
         <button
           type="button"
@@ -342,17 +351,19 @@ function LobbyScreen({
           Trò chơi thuyết trình
         </StampTag>
         <h1 className="headline text-[clamp(3rem,8vw,6.5rem)] text-ink leading-[0.92]">
-          PHÁN
+          HỒ SƠ
           <br />
-          <span className="text-blood">QUYẾT</span> AI
+          <span className="text-blood">THỜI ĐẠI</span> AI
         </h1>
         <p className="serif text-xl italic text-ink/80 max-w-xl border-l-4 border-blood pl-6 mt-6">
-          5 vòng · đọc hồ sơ mơ hồ, chọn 1–2 giai đoạn phù hợp.
+          5 vòng · đọc tình huống ngắn như một mẩu chuyện, suy luận 1–2 giai
+          đoạn phù hợp.
         </p>
         <ul className="mt-6 space-y-3 serif text-lg text-ink/85">
           <li>
-            <strong className="text-blood font-headline">01.</strong> AI đưa
-            mô tả ngắn — không lộ tên giai đoạn.
+            <strong className="text-blood font-headline">01.</strong> AI kể một
+            hoàn cảnh cụ thể — không lộ tên giai đoạn hay thuật ngữ sách giáo
+            khoa.
           </li>
           <li>
             <strong className="text-blood font-headline">02.</strong> Chọn tối
@@ -424,10 +435,10 @@ function RoundView({
       <div>
         <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="font-headline text-lg md:text-xl uppercase text-ink">
+            <p className="font-headline text-xl md:text-2xl uppercase text-ink">
               Chọn đáp án
             </p>
-            <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-ink/55">
+            <p className="mt-1 font-mono text-xs uppercase tracking-[0.2em] text-ink/55">
               {stage === "playing"
                 ? `1–${MAX_PICKS} lựa chọn · đã chọn ${pickedEras.length}`
                 : "Đỏ = chủ đạo · Vàng = phụ"}
@@ -437,14 +448,14 @@ function RoundView({
             <button
               type="button"
               onClick={onConfirm}
-              className="bg-blood text-cream px-6 py-2.5 font-headline text-sm uppercase tracking-wide shadow-[4px_4px_0_#1A1A1A] hover:-translate-y-0.5 transition-transform"
+              className="bg-blood text-cream px-6 py-3 font-headline text-base uppercase tracking-wide shadow-[4px_4px_0_#1A1A1A] hover:-translate-y-0.5 transition-transform"
             >
               Xác nhận →
             </button>
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {ERAS.map((era, i) => {
             const letter = String.fromCharCode(65 + i);
             const isSelected = pickSet.has(i);
@@ -458,7 +469,7 @@ function RoundView({
                 disabled={stage === "revealing"}
                 onClick={() => onToggle(i)}
                 className={cn(
-                  "relative text-left border-2 p-3 md:p-4 flex gap-3 transition-all",
+                  "relative text-left border-2 p-4 md:p-5 flex gap-4 transition-all min-h-[5.5rem]",
                   isPrimary
                     ? "border-blood bg-blood text-cream shadow-[4px_4px_0_#1A1A1A]"
                     : isSecondary
@@ -474,7 +485,7 @@ function RoundView({
               >
                 <span
                   className={cn(
-                    "flex h-10 w-10 shrink-0 items-center justify-center font-headline text-lg border-2",
+                    "flex h-12 w-12 shrink-0 items-center justify-center font-headline text-xl border-2",
                     isPrimary
                       ? "border-cream bg-cream text-blood"
                       : isSecondary
@@ -487,12 +498,12 @@ function RoundView({
                   {letter}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block font-headline text-sm uppercase leading-tight">
+                  <span className="block font-headline text-base md:text-lg uppercase leading-tight">
                     {era.text}
                   </span>
                   <span
                     className={cn(
-                      "mt-0.5 block font-mono text-[9px] uppercase tracking-[0.1em] line-clamp-2",
+                      "mt-1 block font-mono text-xs md:text-sm uppercase tracking-[0.1em] line-clamp-2",
                       isPrimary ? "text-cream/70" : "text-ink/50",
                     )}
                   >
@@ -533,7 +544,7 @@ function RoundView({
               />
             </div>
 
-            <p className="serif text-sm md:text-base text-ink/85 leading-relaxed">
+            <p className="serif text-base md:text-lg text-ink/85 leading-relaxed">
               {scenario.explanation}
             </p>
 
